@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "bab",
+    "a a",
+    "bab"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "b": {
+      "item": "minecraft:ghast_tear"
+    }
+  },
+  "result": {
+    "item": "annoying_villagers:darknetherite_ingot",
+    "count": 2
+  }
+}

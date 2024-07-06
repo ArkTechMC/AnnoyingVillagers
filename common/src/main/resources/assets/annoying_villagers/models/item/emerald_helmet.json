@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "annoying_villagers:item/emerald_helmet"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "minecraft:oak_log"
+  },
+  "base": {
+    "item": "annoying_villagers:oak_door"
+  },
+  "addition": {
+    "item": "minecraft:enchanted_book"
+  },
+  "result": {
+    "item": "annoying_villagers:enchanted_oak_door"
+  }
+}

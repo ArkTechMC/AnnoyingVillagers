@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a a",
+    "a a"
+  ],
+  "key": {
+    "a": {
+      "item": "annoying_villagers:enchanted_diamond"
+    }
+  },
+  "result": {
+    "item": "annoying_villagers:enchanted_diamond_boots",
+    "count": 1
+  }
+}

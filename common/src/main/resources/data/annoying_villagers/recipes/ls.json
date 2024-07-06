@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aaa",
+    "b  "
+  ],
+  "key": {
+    "a": {
+      "item": "annoying_villagers:pure_magic_diamond"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "annoying_villagers:legendary_sword",
+    "count": 1
+  }
+}

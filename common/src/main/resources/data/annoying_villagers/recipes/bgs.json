@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " aa",
+    "aba",
+    "aa "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:tnt"
+    },
+    "b": {
+      "item": "annoying_villagers:great_sword"
+    }
+  },
+  "result": {
+    "item": "annoying_villagers:broken_great_sword",
+    "count": 1
+  }
+}

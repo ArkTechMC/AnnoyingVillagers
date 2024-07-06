@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:crafting_table"
+    }
+  },
+  "result": {
+    "item": "annoying_villagers:crafting_table",
+    "count": 1
+  }
+}

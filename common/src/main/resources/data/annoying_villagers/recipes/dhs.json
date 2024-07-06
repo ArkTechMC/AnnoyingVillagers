@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "caa",
+    "b c"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:diamond"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    },
+    "c": {
+      "item": "annoying_villagers:diamond_fragments"
+    }
+  },
+  "result": {
+    "item": "annoying_villagers:diamond_hook_sword",
+    "count": 1
+  }
+}

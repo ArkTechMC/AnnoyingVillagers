@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "  c",
+    "ca ",
+    "bc "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:diamond"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    },
+    "c": {
+      "item": "annoying_villagers:diamond_fragments"
+    }
+  },
+  "result": {
+    "item": "annoying_villagers:diamond_rapier",
+    "count": 1
+  }
+}

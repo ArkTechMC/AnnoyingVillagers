@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " bb",
+    "bb ",
+    "ab "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:diamond"
+    },
+    "b": {
+      "item": "annoying_villagers:diamond_fragments"
+    }
+  },
+  "result": {
+    "item": "annoying_villagers:diamond_claw_knife",
+    "count": 1
+  }
+}

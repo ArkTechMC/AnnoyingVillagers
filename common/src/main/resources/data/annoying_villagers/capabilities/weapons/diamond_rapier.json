@@ -1,0 +1,19 @@
+{
+	"type": "epicfight:dagger",
+	"attributes": {
+		"one_hand": {
+			"armor_negation": 10,
+  			"impact": 1.1,
+			"max_strikes": 1,
+                                               "speed_bonus": 0.0,
+                                               "damage_bonus": 0.0
+		},
+		"two_hand": {
+			"armor_negation": 10,
+  			"impact": 2,
+			"max_strikes": 4,
+                                                "speed_bonus": 0.0,
+                                                "damage_bonus": 0.0
+		}
+	}
+}

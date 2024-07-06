@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " ca",
+    "cbc",
+    "ac "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:diamond"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    },
+    "c": {
+      "item": "annoying_villagers:diamond_fragments"
+    }
+  },
+  "result": {
+    "item": "annoying_villagers:double_diamond_glaive",
+    "count": 1
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "  a",
+    " a ",
+    "b  "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:diamond"
+    },
+    "b": {
+      "item": "annoying_villagers:short_stick"
+    }
+  },
+  "result": {
+    "item": "annoying_villagers:diamond_dagger",
+    "count": 1
+  }
+}

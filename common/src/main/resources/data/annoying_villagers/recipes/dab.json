@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " b",
+    "a "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:diamond"
+    },
+    "b": {
+      "item": "annoying_villagers:diamond_fragments"
+    }
+  },
+  "result": {
+    "item": "annoying_villagers:diamond_armblades",
+    "count": 1
+  }
+}

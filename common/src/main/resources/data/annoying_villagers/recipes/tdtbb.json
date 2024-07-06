@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "cac",
+    " b "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:diamond"
+    },
+    "b": {
+      "item": "minecraft:stick"
+    },
+    "c": {
+      "item": "annoying_villagers:thunder_diamond_battleaxe"
+    }
+  },
+  "result": {
+    "item": "annoying_villagers:thunder_diamond_twin_bladed_battleaxe",
+    "count": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aaa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "annoying_villagers:darknetherite_nugget"
+    }
+  },
+  "result": {
+    "item": "annoying_villagers:darknetherite_ingot",
+    "count": 1
+  }
+}

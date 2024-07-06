@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "bab",
+    "aca",
+    "bab"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:diamond"
+    },
+    "b": {
+      "item": "minecraft:ghast_tear"
+    },
+    "c": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "annoying_villagers:enchanted_diamond",
+    "count": 6
+  }
+}

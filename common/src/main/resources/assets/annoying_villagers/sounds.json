@@ -1,0 +1,182 @@
+{
+  "legendary.sword.wake.up": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:steve.legendary.sword.wake.up",
+        "stream": false
+      }
+    ]
+  },
+  "steve.pashe2.ihmw": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:steve.pashe2.ihmw",
+        "stream": false
+      }
+    ]
+  },
+  "steve.pashe2.tmdgb": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:steve.pashe2.tmdgb",
+        "stream": false
+      }
+    ]
+  },
+  "steve.pashe3.iwky": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:steve.pashe3.iwky",
+        "stream": false
+      }
+    ]
+  },
+  "steve.spawm": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:steve.spawn",
+        "stream": false
+      }
+    ]
+  },
+  "steve.dead": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:steve.dead",
+        "stream": false
+      }
+    ]
+  },
+  "grave.pashe2.iwky": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:grave.pashe2.iwky",
+        "stream": false
+      }
+    ]
+  },
+  "grave.spawn": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:grave.spawn",
+        "stream": false
+      }
+    ]
+  },
+  "grave.dead": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:grave.dead",
+        "stream": false
+      }
+    ]
+  },
+  "blue.demon.dead": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:blue.demon.dead",
+        "stream": false
+      }
+    ]
+  },
+  "blue.demon.spawn": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:blue.demon.spawn",
+        "stream": false
+      }
+    ]
+  },
+  "blue.demon.ittrsp": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:blue.demon.ittrsp",
+        "stream": false
+      }
+    ]
+  },
+  "blue.demon.trident.festival": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:blue.demon.trident.festival",
+        "stream": false
+      }
+    ]
+  },
+  "alex.spawn": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:alex.spawn",
+        "stream": false
+      }
+    ]
+  },
+  "steve.putarmor": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:steve.putarmor",
+        "stream": false
+      }
+    ]
+  },
+  "steve.p2.speak": {
+    "sounds": [
+      {
+        "name": "annoying_villagers:steve.p2.speak",
+        "stream": false
+      }
+    ]
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
