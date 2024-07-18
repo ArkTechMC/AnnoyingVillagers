@@ -2,10 +2,11 @@ package com.iafenvoy.annoyingvillagers.entity;
 
 import com.iafenvoy.annoyingvillagers.AnnoyingVillagers;
 import com.iafenvoy.annoyingvillagers.client.renderer.Stage;
-import com.iafenvoy.annoyingvillagers.procedures.BlueDemonDead;
-import com.iafenvoy.annoyingvillagers.procedures.BlueDemonSpawn;
 import com.iafenvoy.annoyingvillagers.procedures.BlueDemonTick;
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItems;
+import com.iafenvoy.annoyingvillagers.util.CommandHelper;
+import com.iafenvoy.annoyingvillagers.util.SoundUtil;
+import com.iafenvoy.annoyingvillagers.util.Timeout;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -27,6 +28,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 
 public class BlueDemonEntity extends HostileEntity {
     public static final Stage.StagedEntityTextureProvider textures=Stage.ofProvider(AnnoyingVillagers.MOD_ID,"blue_demon");
@@ -105,13 +107,24 @@ public class BlueDemonEntity extends HostileEntity {
     @Override
     public void onDeath(DamageSource source) {
         super.onDeath(source);
-        BlueDemonDead.execute(this.getWorld(), this.getX(), this.getY(), this.getZ(), this);
+        WorldAccess world = this.getWorld();
+        if (this == null)
+            return;
+        if (world instanceof World _level)
+            SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new Identifier(AnnoyingVillagers.MOD_ID, "blue.demon.dead"), 1, 1);
+        CommandHelper.execute(this, "tellraw @a \"<Blue Deamon> I pray you find your own selfish...\"");
     }
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
         EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
-        BlueDemonSpawn.execute(world, this.getX(), this.getY(), this.getZ(), this);
+        if (this != null) {
+            Timeout.create(20, () -> {
+                CommandHelper.execute(this, "tellraw @a \"<Blue Demon> Are you my enemy?\"");
+                if ((WorldAccess) world instanceof World _level)
+                    SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new Identifier(AnnoyingVillagers.MOD_ID, "blue.demon.spawn"), 1, 1);
+            });
+        }
         return retval;
     }
 

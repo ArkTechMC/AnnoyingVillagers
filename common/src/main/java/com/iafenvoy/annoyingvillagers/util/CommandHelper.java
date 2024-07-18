@@ -8,7 +8,7 @@ public class CommandHelper {
     }
 
     public static void execute(Entity entity, String command, int level) {
-        if (!entity.getWorld().isClient() && entity.getServer() != null) {
+        if (!entity.getWorld().isClient && entity.getServer() != null) {
             entity.getServer().getCommandManager().executeWithPrefix(entity.getCommandSource().withSilent().withLevel(level), command);
         }
     }

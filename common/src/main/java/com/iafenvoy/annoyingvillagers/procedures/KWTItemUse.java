@@ -1,9 +1,13 @@
 package com.iafenvoy.annoyingvillagers.procedures;
 
+import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.util.Hand;
 import net.minecraft.world.WorldAccess;
 import com.iafenvoy.annoyingvillagers.AnnoyingMod;
 import com.iafenvoy.annoyingvillagers.init.AnnoyingModItem;
@@ -18,14 +22,14 @@ public class KWTItemUse {
                 entity.getPersistentData().putDouble("uses", (itemstack.getDamage()));
                 AnnoyingMod.queueServerWork(1, () -> {
                     if (entity instanceof LivingEntity _entity) {
-                        ItemStack _setstack = new ItemStack(AnnoyingModItem.KNIFE.get()).copy();
+                        ItemStack _setstack = new ItemStack(AnnoyingModItems.KNIFE.get()).copy();
                         _setstack.setCount(1);
-                        _entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
-                        if (_entity instanceof Player _player)
-                            _player.getInventory().setChanged();
+                        _entity.setStackInHand(Hand.MAIN_HAND, _setstack);
+                        if (_entity instanceof PlayerEntity _player)
+                            _player.getInventory().markDirty();
                     }
                     {
-                        CompoundTag _nbtTag = itemstack.getTag();
+                        NbtCompound _nbtTag = itemstack.getNbt();
                         if (_nbtTag != null)
                             (entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).setTag(_nbtTag.copy());
                     }

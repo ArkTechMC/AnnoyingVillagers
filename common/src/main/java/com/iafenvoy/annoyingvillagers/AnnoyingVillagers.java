@@ -24,6 +24,5 @@ public class AnnoyingVillagers {
     }
 
     public static void processClient() {
-
     }
 }

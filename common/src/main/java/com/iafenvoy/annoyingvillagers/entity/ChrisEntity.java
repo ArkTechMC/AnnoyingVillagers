@@ -1,11 +1,13 @@
 package com.iafenvoy.annoyingvillagers.entity;
 
+import com.iafenvoy.annoyingvillagers.AnnoyingMod;
 import com.iafenvoy.annoyingvillagers.AnnoyingVillagers;
 import com.iafenvoy.annoyingvillagers.client.renderer.Stage;
-import com.iafenvoy.annoyingvillagers.procedures.GraveDead;
-import com.iafenvoy.annoyingvillagers.procedures.GraveSpawn;
 import com.iafenvoy.annoyingvillagers.procedures.GraveTick;
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItems;
+import com.iafenvoy.annoyingvillagers.util.CommandHelper;
+import com.iafenvoy.annoyingvillagers.util.SoundUtil;
+import com.iafenvoy.annoyingvillagers.util.Timeout;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -27,6 +29,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 
 public class ChrisEntity extends HostileEntity {
     public static final Stage.StagedEntityTextureProvider textures=Stage.ofProvider(AnnoyingVillagers.MOD_ID,"chris");
@@ -96,13 +99,26 @@ public class ChrisEntity extends HostileEntity {
     @Override
     public void onDeath(DamageSource source) {
         super.onDeath(source);
-        GraveDead.execute(this.getWorld(), this.getX(), this.getY(), this.getZ(), this);
+        WorldAccess world = this.getWorld();
+        if (this == null)
+            return;
+        if (world instanceof World _level)
+            SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new Identifier(AnnoyingVillagers.MOD_ID, "grave.dead"), 1, 1);
+        AnnoyingMod.queueServerWork(20, () -> CommandHelper.execute(this, "tellraw @a \"<X_Grave_X> I just come back if I am stronger!\""));
+        AnnoyingMod.queueServerWork(20, () -> CommandHelper.execute(this, "/tellraw @a [{\"text\":\"X_Grave_X left the game\",\"color\":\"yellow\",\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false}]"));
     }
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
         EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
-        GraveSpawn.execute(world, this.getX(), this.getY(), this.getZ(), this);
+        if (this != null) {
+            CommandHelper.execute(this, "/tellraw @a [{\"text\":\"X_Grave_X joined the game\",\"color\":\"yellow\",\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false}]");
+            Timeout.create(20, () -> {
+                CommandHelper.execute(this, "tellraw @a \"<X_Grave_X> Only the strong can live in this world!\"");
+                if ((WorldAccess) world instanceof World _level)
+                    SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new Identifier(AnnoyingVillagers.MOD_ID, "grave.spawn"), 1, 1);
+            });
+        }
         return retval;
     }
 
