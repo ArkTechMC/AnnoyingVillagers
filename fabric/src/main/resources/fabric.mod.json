@@ -8,7 +8,7 @@
   "authors": [],
   "contact": {},
 
-  "license": "Unlicense",
+  "license": "All Rights Reserved",
   "icon": "logo.png",
 
   "environment": "*",
@@ -26,6 +26,7 @@
   ],
   "depends": {
     "fabricloader": ">=0.15.11",
-    "minecraft": ">=1.20.1"
+    "minecraft": ">=1.20.1",
+    "architectury": "*"
   }
 }
