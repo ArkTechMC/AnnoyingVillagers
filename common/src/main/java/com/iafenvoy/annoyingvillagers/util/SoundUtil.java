@@ -13,7 +13,7 @@ public class SoundUtil {
     public static void playSound(World world, double x, double y, double z, Identifier soundId, float volume, float pitch) {
         SoundEvent soundEvent = Registries.SOUND_EVENT.get(soundId);
         if (soundEvent == null) return;
-        if (world.isClient())
+        if (world.isClient)
             world.playSound(x, y, z, soundEvent, SoundCategory.NEUTRAL, volume, pitch, false);
         else
             world.playSound(null, VecUtil.createBlockPos(x, y, z), soundEvent, SoundCategory.NEUTRAL, volume, pitch);
@@ -22,7 +22,7 @@ public class SoundUtil {
     public static void playPlayerSound(World world, double x, double y, double z, Identifier soundId, float volume, float pitch) {
         SoundEvent soundEvent = Registries.SOUND_EVENT.get(soundId);
         if (soundEvent == null) return;
-        if (world.isClient())
+        if (world.isClient)
             world.playSound(x, y, z, soundEvent, SoundCategory.PLAYERS, volume, pitch, false);
         else
             world.playSound(null, VecUtil.createBlockPos(x, y, z), soundEvent, SoundCategory.PLAYERS, volume, pitch);

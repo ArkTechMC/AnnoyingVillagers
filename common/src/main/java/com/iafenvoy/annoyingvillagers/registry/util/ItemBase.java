@@ -1,6 +1,6 @@
 package com.iafenvoy.annoyingvillagers.registry.util;
 
-import dev.rainimator.mod.registry.RainimatorItemGroups;
+import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -12,7 +12,7 @@ import java.util.function.Function;
 
 public class ItemBase extends Item implements ISwingable {
     public ItemBase(Function<Settings, Settings> properties) {
-        super(properties.apply(new Settings().rarity(Rarity.COMMON).maxCount(64).arch$tab(RainimatorItemGroups.ITEM)));
+        super(properties.apply(new Settings().rarity(Rarity.COMMON).maxCount(64).arch$tab(AnnoyingModItemGroups.MATERIAL)));
     }
 
     public boolean onDroppedByPlayer(ItemStack itemstack, PlayerEntity entity) {

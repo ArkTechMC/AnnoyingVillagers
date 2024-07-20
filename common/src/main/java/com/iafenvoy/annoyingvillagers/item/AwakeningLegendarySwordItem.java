@@ -1,10 +1,10 @@
 package com.iafenvoy.annoyingvillagers.item;
 
+import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItems;
 import com.iafenvoy.annoyingvillagers.registry.util.FoilSwordItemBase;
 import com.iafenvoy.annoyingvillagers.registry.util.ToolMaterialUtil;
 import com.iafenvoy.annoyingvillagers.util.Timeout;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -16,11 +16,10 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 
 public class AwakeningLegendarySwordItem extends FoilSwordItemBase {
     public AwakeningLegendarySwordItem() {
-        super(ToolMaterialUtil.of(9999, 17, 25, 5, 27), 3, -2.4f, new Item.Settings());
+        super(ToolMaterialUtil.of(9999, 17, 25, 5, 27), 3, -2.4f, new Item.Settings().arch$tab(AnnoyingModItemGroups.ORDINARY_WEAPONS));
     }
 
     @Override
@@ -30,46 +29,32 @@ public class AwakeningLegendarySwordItem extends FoilSwordItemBase {
         double y = entity.getY();
         double z = entity.getZ();
         ItemStack itemstack = ar.getValue();
-        if (entity != null) {
-            if (entity.isSneaking()) {
-                if (((Entity) entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandStack() : ItemStack.EMPTY).getItem() == itemstack.getItem()) {
-                    ((WorldAccess) world).addParticle(ParticleTypes.FLASH, x, y, z, 0, 0, 0);
-                    ((Entity) entity).getPersistentData().putDouble("uses", (itemstack.getDamage()));
-                    Timeout.create(1, () -> {
-                        if ((Entity) entity instanceof LivingEntity _entity) {
-                            ItemStack _setstack = new ItemStack(AnnoyingModItems.LEGENDARY_SWORD.get()).copy();
-                            _setstack.setCount(1);
-                            _entity.setStackInHand(Hand.MAIN_HAND, _setstack);
-                            if (_entity instanceof PlayerEntity _player)
-                                _player.getInventory().markDirty();
-                        }
-                        NbtCompound _nbtTag = itemstack.getNbt();
-                        if (_nbtTag != null)
-                            ((Entity) entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandStack() : ItemStack.EMPTY).setNbt(_nbtTag.copy());
-                        ((Entity) entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandStack() : ItemStack.EMPTY).setDamage((int) ((Entity) entity).getPersistentData().getDouble("uses"));
-                        if ((Entity) entity instanceof PlayerEntity _player)
-                            _player.getItemCooldownManager().set(_player.getMainHandStack().getItem(), 100);
-                    });
-                } else {
-                    ((WorldAccess) world).addParticle(ParticleTypes.FLASH, x, y, z, 0, 0, 0);
-                    ((Entity) entity).getPersistentData().putDouble("uses", (itemstack.getDamage()));
-                    Timeout.create(1, () -> {
-                        if ((Entity) entity instanceof LivingEntity _entity) {
-                            ItemStack _setstack = new ItemStack(AnnoyingModItems.LEGENDARY_SWORD.get()).copy();
-                            _setstack.setCount(1);
-                            _entity.setStackInHand(Hand.OFF_HAND, _setstack);
-                            if (_entity instanceof PlayerEntity _player)
-                                _player.getInventory().markDirty();
-                        }
-                        NbtCompound _nbtTag = itemstack.getNbt();
-                        if (_nbtTag != null)
-                            ((Entity) entity instanceof LivingEntity _livEnt ? _livEnt.getOffHandStack() : ItemStack.EMPTY).setNbt(_nbtTag.copy());
-                        ((Entity) entity instanceof LivingEntity _livEnt ? _livEnt.getOffHandStack() : ItemStack.EMPTY).setDamage((int) ((Entity) entity).getPersistentData().getDouble("uses"));
-                        if ((Entity) entity instanceof PlayerEntity _player) {
-                            _player.getItemCooldownManager().set(_player.getOffHandStack().getItem(), 100);
-                        }
-                    });
-                }
+        if (entity.isSneaking()) {
+            if (entity.getMainHandStack().getItem() == itemstack.getItem()) {
+                world.addParticle(ParticleTypes.FLASH, x, y, z, 0, 0, 0);
+                Timeout.create(1, () -> {
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.LEGENDARY_SWORD.get()).copy();
+                    _setstack.setCount(1);
+                    entity.setStackInHand(Hand.MAIN_HAND, _setstack);
+                    entity.getInventory().markDirty();
+                    NbtCompound _nbtTag = itemstack.getNbt();
+                    if (_nbtTag != null) {
+                        entity.getMainHandStack().setNbt(_nbtTag.copy());
+                    }
+                    entity.getItemCooldownManager().set(entity.getMainHandStack().getItem(), 100);
+                });
+            } else {
+                world.addParticle(ParticleTypes.FLASH, x, y, z, 0, 0, 0);
+                Timeout.create(1, () -> {
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.LEGENDARY_SWORD.get()).copy();
+                    _setstack.setCount(1);
+                    entity.setStackInHand(Hand.OFF_HAND, _setstack);
+                    entity.getInventory().markDirty();
+                    NbtCompound _nbtTag = itemstack.getNbt();
+                    if (_nbtTag != null)
+                        entity.getOffHandStack().setNbt(_nbtTag.copy());
+                    entity.getItemCooldownManager().set(entity.getOffHandStack().getItem(), 100);
+                });
             }
         }
         return ar;

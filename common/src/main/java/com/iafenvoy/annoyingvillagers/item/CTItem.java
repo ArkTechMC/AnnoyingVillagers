@@ -1,5 +1,6 @@
 package com.iafenvoy.annoyingvillagers.item;
 
+import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
 import com.iafenvoy.annoyingvillagers.registry.util.ToolMaterialUtil;
 import com.iafenvoy.annoyingvillagers.util.SoundUtil;
 import net.minecraft.entity.LivingEntity;
@@ -11,7 +12,7 @@ import net.minecraft.world.WorldAccess;
 
 public class CTItem extends SwordItem {
     public CTItem() {
-        super(ToolMaterialUtil.of(64, 6, 0.5f, 5, 15), 3, -2.8f, new Settings());
+        super(ToolMaterialUtil.of(64, 6, 0.5f, 5, 15), 3, -2.8f, new Settings().arch$tab(AnnoyingModItemGroups.ORDINARY_WEAPONS));
     }
 
     @Override

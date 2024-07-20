@@ -1,5 +1,6 @@
 package com.iafenvoy.annoyingvillagers.item;
 
+import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
 import com.iafenvoy.annoyingvillagers.registry.util.ToolMaterialUtil;
 import com.iafenvoy.annoyingvillagers.util.SoundUtil;
 import net.fabricmc.api.EnvType;
@@ -13,7 +14,7 @@ import net.minecraft.world.WorldAccess;
 
 public class EODItem extends SwordItem {
     public EODItem() {
-        super(ToolMaterialUtil.of(64, 6, 2.5f, 5, 15), 3, -2.7f, new Settings());
+        super(ToolMaterialUtil.of(64, 6, 2.5f, 5, 15), 3, -2.7f, new Settings().arch$tab(AnnoyingModItemGroups.ORDINARY_WEAPONS));
     }
 
     @Override

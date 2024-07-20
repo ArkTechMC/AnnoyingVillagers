@@ -17,7 +17,6 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
@@ -46,16 +45,29 @@ import java.util.List;
 public class AlexEntity extends HostileEntity {
     public static final Stage.StagedEntityTextureProvider textures = Stage.ofProvider(AnnoyingVillagers.MOD_ID, "alex");
     private final ServerBossBar bossInfo = new ServerBossBar(this.getDisplayName(), BossBar.Color.GREEN, BossBar.Style.PROGRESS);
+    private double timer;
 
     public AlexEntity(EntityType<AlexEntity> type, World world) {
         super(type, world);
-        setStepHeight(0.6f);
-        experiencePoints = 0;
-        setAiDisabled(false);
-        setCustomName(Text.literal("Alex"));
-        setCustomNameVisible(true);
-        setPersistent();
+        this.setStepHeight(0.6f);
+        this.experiencePoints = 0;
+        this.setAiDisabled(false);
+        this.setCustomName(Text.literal("Alex"));
+        this.setCustomNameVisible(true);
+        this.setPersistent();
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.DIAMOND_SWORD));
+    }
+
+    public static DefaultAttributeContainer.Builder createAttributes() {
+        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
+        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.45);
+        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 230);
+        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 25);
+        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 17);
+        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64);
+        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1);
+        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.2);
+        return builder;
     }
 
     @Override
@@ -71,6 +83,18 @@ public class AlexEntity extends HostileEntity {
         this.targetSelector.add(4, new RevengeGoal(this));
         this.goalSelector.add(5, new LookAroundGoal(this));
         this.goalSelector.add(6, new SwimGoal(this));
+    }
+
+    @Override
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        this.timer = nbt.getDouble("timer");
+    }
+
+    @Override
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        nbt.putDouble("timer", this.timer);
     }
 
     @Override
@@ -109,22 +133,18 @@ public class AlexEntity extends HostileEntity {
     public void onDeath(DamageSource source) {
         super.onDeath(source);
         this.getWorld();
-        if (this == null)
-            return;
         Timeout.create(20, () -> CommandHelper.execute(this, "/tellraw @a [{\"text\":\"Alex left the game\",\"color\":\"yellow\",\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false}]"));
     }
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason reason, EntityData livingdata, NbtCompound tag) {
         EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
-        if (this != null) {
-            CommandHelper.execute(this, "/tellraw @a [{\"text\":\"Alex joined the game\",\"color\":\"yellow\",\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false}]");
-            Timeout.create(20, () -> {
-                CommandHelper.execute(this, "tellraw @a \"<Alex> I'm way stronger than all of you combined!\"");
-                if ((WorldAccess) world instanceof World _level)
-                    SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new Identifier(AnnoyingVillagers.MOD_ID, "alex.spawn"), 1, 1);
-            });
-        }
+        CommandHelper.execute(this, "/tellraw @a [{\"text\":\"Alex joined the game\",\"color\":\"yellow\",\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false}]");
+        Timeout.create(20, () -> {
+            CommandHelper.execute(this, "tellraw @a \"<Alex> I'm way stronger than all of you combined!\"");
+            if ((WorldAccess) world instanceof World _level)
+                SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new Identifier(AnnoyingVillagers.MOD_ID, "alex.spawn"), 1, 1);
+        });
         return retval;
     }
 
@@ -135,31 +155,27 @@ public class AlexEntity extends HostileEntity {
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
-        if (this == null)
-            return;
         int attack = 0;
 
-        ((LivingEntity) this).getPersistentData().putDouble("timer", (((LivingEntity) this).getPersistentData().getDouble("timer") + 1));
-        if (((LivingEntity) this).getPersistentData().getDouble("timer") == 30) {
-            ((LivingEntity) this).getPersistentData().putDouble("timer", 0);
+        this.timer++;
+        if (this.timer == 30) {
+            this.timer = 0;
             attack = MathHelper.nextInt(Random.create(), 1, 11);
         }
 
         final Vec3d _center = new Vec3d(x, y, z);
         List<Entity> _entfound = world.getEntitiesByClass(Entity.class, new Box(_center, _center).expand(32 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.squaredDistanceTo(_center))).toList();
         for (Entity entityiterator : _entfound) {
-            if (((LivingEntity) this instanceof MobEntity _mobEnt ? _mobEnt.getTarget() : null) == entityiterator) {
+            if (this.getTarget() == entityiterator) {
                 switch (attack) {
                     case 1: {
                         ItemStack _setstack = new ItemStack(Items.GOLDEN_APPLE).copy();
                         _setstack.setCount(1);
-                        setStackInHand(Hand.MAIN_HAND, _setstack);
-                        if ((LivingEntity) this instanceof PlayerEntity _player)
-                            _player.getInventory().markDirty();
+                        this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
                             if (world instanceof World _level)
                                 SoundUtil.playSound(_level, x, y + 1, z, new Identifier("entity.generic.eat"), 1.2f, (float) MathHelper.nextDouble(Random.create(), 0.9, 1.1));
-                            swingHand(Hand.MAIN_HAND, true);
+                            this.swingHand(Hand.MAIN_HAND, true);
                         };
                         Timeout.create(0, runnable);
                         Timeout.create(5, runnable);
@@ -169,39 +185,35 @@ public class AlexEntity extends HostileEntity {
                         Timeout.create(25, runnable);
                         Timeout.create(30, () -> {
                             runnable.run();
-                            if (!getWorld().isClient) {
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 80, 4, false, true));
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 7200, 2, false, true));
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 2, false, true));
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 1, false, true));
+                            if (!this.getWorld().isClient) {
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 80, 4, false, true));
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 7200, 2, false, true));
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 2, false, true));
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 1, false, true));
                             }
                             ItemStack stack = new ItemStack(Items.DIAMOND_SWORD).copy();
                             stack.setCount(1);
-                            setStackInHand(Hand.MAIN_HAND, stack);
-                            if ((LivingEntity) this instanceof PlayerEntity _player)
-                                _player.getInventory().markDirty();
+                            this.setStackInHand(Hand.MAIN_HAND, stack);
                         });
                     }
                     case 5: {
                         if (world instanceof World _level)
                             SoundUtil.playSound(_level, x, y, z, new Identifier("entity.ender_pearl.throw"), 1, 1);
-                        World projectileLevel = getWorld();
+                        World projectileLevel = this.getWorld();
                         if (!projectileLevel.isClient) {
                             ProjectileEntity entityToSpawn = new EnderPearlEntity(EntityType.ENDER_PEARL, projectileLevel);
                             entityToSpawn.setOwner(this);
-                            entityToSpawn.setPosition(getX(), getEyeY() - 0.1, getZ());
-                            entityToSpawn.setVelocity(getRotationVector().x, getRotationVector().y, getRotationVector().z, 1, 0);
+                            entityToSpawn.setPosition(this.getX(), this.getEyeY() - 0.1, this.getZ());
+                            entityToSpawn.setVelocity(this.getRotationVector().x, this.getRotationVector().y, this.getRotationVector().z, 1, 0);
                             projectileLevel.spawnEntity(entityToSpawn);
                         }
                     }
                     case 6: {
                         ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD).copy();
                         _setstack.setCount(1);
-                        setStackInHand(Hand.MAIN_HAND, _setstack);
-                        if ((LivingEntity) this instanceof PlayerEntity _player)
-                            _player.getInventory().markDirty();
+                        this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
-                            swingHand(Hand.MAIN_HAND, true);
+                            this.swingHand(Hand.MAIN_HAND, true);
                             if (world instanceof World _level)
                                 SoundUtil.playSound(_level, x, y, z, new Identifier("entity.witch.throw"), 1, 1);
                         };
@@ -212,11 +224,9 @@ public class AlexEntity extends HostileEntity {
                     case 7: {
                         ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD).copy();
                         _setstack.setCount(1);
-                        setStackInHand(Hand.MAIN_HAND, _setstack);
-                        if ((LivingEntity) this instanceof PlayerEntity _player)
-                            _player.getInventory().markDirty();
+                        this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
-                            swingHand(Hand.MAIN_HAND, true);
+                            this.swingHand(Hand.MAIN_HAND, true);
                             if (world instanceof World _level)
                                 SoundUtil.playSound(_level, x, y, z, new Identifier("entity.witch.throw"), 1, 1);
                         };
@@ -227,33 +237,31 @@ public class AlexEntity extends HostileEntity {
                     case 2: {
                         if (world instanceof World _level)
                             SoundUtil.playSound(_level, x, y, z, new Identifier("entity.ender_pearl.throw"), 1, 1);
-                        World projectileLevel = getWorld();
+                        World projectileLevel = this.getWorld();
                         if (!projectileLevel.isClient) {
                             ProjectileEntity entityToSpawn = new EnderPearlEntity(EntityType.ENDER_PEARL, projectileLevel);
                             entityToSpawn.setOwner(this);
-                            entityToSpawn.setPosition(getX(), getEyeY() - 0.1, getZ());
-                            entityToSpawn.setVelocity(getRotationVector().x, getRotationVector().y, getRotationVector().z, 1, 0);
+                            entityToSpawn.setPosition(this.getX(), this.getEyeY() - 0.1, this.getZ());
+                            entityToSpawn.setVelocity(this.getRotationVector().x, this.getRotationVector().y, this.getRotationVector().z, 1, 0);
                             projectileLevel.spawnEntity(entityToSpawn);
                         }
                     }
                     case 8: {
                         ItemStack _setstack = new ItemStack(Items.BOW).copy();
                         _setstack.setCount(1);
-                        setStackInHand(Hand.MAIN_HAND, _setstack);
-                        if ((LivingEntity) this instanceof PlayerEntity _player)
-                            _player.getInventory().markDirty();
+                        this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
-                            swingHand(Hand.MAIN_HAND, true);
+                            this.swingHand(Hand.MAIN_HAND, true);
                             if (world instanceof World _level)
                                 SoundUtil.playSound(_level, x, y, z, new Identifier("entity.arrow.shoot"), 1, 1);
-                            World projectileLevel = getWorld();
+                            World projectileLevel = this.getWorld();
                             if (!projectileLevel.isClient) {
                                 PersistentProjectileEntity entityToSpawn = new ArrowEntity(EntityType.ARROW, projectileLevel);
                                 entityToSpawn.setOwner(this);
                                 entityToSpawn.setDamage(7);
                                 entityToSpawn.setPunch(4);
-                                entityToSpawn.setPosition(getX(), getEyeY() - 0.1, getZ());
-                                entityToSpawn.setVelocity(getRotationVector().x, getRotationVector().y, getRotationVector().z, 3, 0);
+                                entityToSpawn.setPosition(this.getX(), this.getEyeY() - 0.1, this.getZ());
+                                entityToSpawn.setVelocity(this.getRotationVector().x, this.getRotationVector().y, this.getRotationVector().z, 3, 0);
                                 projectileLevel.spawnEntity(entityToSpawn);
                             }
                         };
@@ -265,21 +273,19 @@ public class AlexEntity extends HostileEntity {
                     case 3: {
                         ItemStack _setstack = new ItemStack(Items.BOW).copy();
                         _setstack.setCount(1);
-                        setStackInHand(Hand.MAIN_HAND, _setstack);
-                        if ((LivingEntity) this instanceof PlayerEntity _player)
-                            _player.getInventory().markDirty();
+                        this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
-                            swingHand(Hand.MAIN_HAND, true);
+                            this.swingHand(Hand.MAIN_HAND, true);
                             if (world instanceof World _level)
                                 SoundUtil.playSound(_level, x, y, z, new Identifier("entity.arrow.shoot"), 1, 1);
-                            World projectileLevel = getWorld();
-                            if (!projectileLevel.isClient()) {
+                            World projectileLevel = this.getWorld();
+                            if (!projectileLevel.isClient) {
                                 PersistentProjectileEntity entityToSpawn = new ArrowEntity(EntityType.ARROW, projectileLevel);
                                 entityToSpawn.setOwner(this);
                                 entityToSpawn.setDamage(7);
                                 entityToSpawn.setPunch(4);
-                                entityToSpawn.setPosition(getX(), getEyeY() - 0.1, getZ());
-                                entityToSpawn.setVelocity(getRotationVector().x, getRotationVector().y, getRotationVector().z, 3, 0);
+                                entityToSpawn.setPosition(this.getX(), this.getEyeY() - 0.1, this.getZ());
+                                entityToSpawn.setVelocity(this.getRotationVector().x, this.getRotationVector().y, this.getRotationVector().z, 3, 0);
                                 projectileLevel.spawnEntity(entityToSpawn);
                             }
                         };
@@ -291,21 +297,19 @@ public class AlexEntity extends HostileEntity {
                     case 4: {
                         ItemStack _setstack = new ItemStack(Items.BOW).copy();
                         _setstack.setCount(1);
-                        setStackInHand(Hand.MAIN_HAND, _setstack);
-                        if ((LivingEntity) this instanceof PlayerEntity _player)
-                            _player.getInventory().markDirty();
+                        this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
-                            swingHand(Hand.MAIN_HAND, true);
+                            this.swingHand(Hand.MAIN_HAND, true);
                             if (world instanceof World _level)
                                 SoundUtil.playSound(_level, x, y, z, new Identifier("entity.arrow.shoot"), 1, 1);
-                            World projectileLevel = getWorld();
-                            if (!projectileLevel.isClient()) {
+                            World projectileLevel = this.getWorld();
+                            if (!projectileLevel.isClient) {
                                 PersistentProjectileEntity entityToSpawn = new ArrowEntity(EntityType.ARROW, projectileLevel);
                                 entityToSpawn.setOwner(this);
                                 entityToSpawn.setDamage(7);
                                 entityToSpawn.setPunch(4);
-                                entityToSpawn.setPosition(getX(), getEyeY() - 0.1, getZ());
-                                entityToSpawn.setVelocity(getRotationVector().x, getRotationVector().y, getRotationVector().z, 3, 0);
+                                entityToSpawn.setPosition(this.getX(), this.getEyeY() - 0.1, this.getZ());
+                                entityToSpawn.setVelocity(this.getRotationVector().x, this.getRotationVector().y, this.getRotationVector().z, 3, 0);
                                 projectileLevel.spawnEntity(entityToSpawn);
                             }
                         };
@@ -317,13 +321,11 @@ public class AlexEntity extends HostileEntity {
                     case 9: {
                         ItemStack _setstack = new ItemStack(Items.GOLDEN_APPLE).copy();
                         _setstack.setCount(1);
-                        setStackInHand(Hand.MAIN_HAND, _setstack);
-                        if ((LivingEntity) this instanceof PlayerEntity _player)
-                            _player.getInventory().markDirty();
+                        this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
                             if (world instanceof World _level)
                                 SoundUtil.playSound(_level, x, y + 1, z, new Identifier("entity.generic.eat"), 1.2f, (float) MathHelper.nextDouble(Random.create(), 0.9, 1.1));
-                            swingHand(Hand.MAIN_HAND, true);
+                            this.swingHand(Hand.MAIN_HAND, true);
                         };
                         Timeout.create(0, runnable);
                         Timeout.create(5, runnable);
@@ -333,29 +335,25 @@ public class AlexEntity extends HostileEntity {
                         Timeout.create(25, runnable);
                         Timeout.create(30, () -> {
                             runnable.run();
-                            if (!getWorld().isClient) {
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 80, 4, false, true));
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 7200, 2, false, true));
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 2, false, true));
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 1, false, true));
+                            if (!this.getWorld().isClient) {
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 80, 4, false, true));
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 7200, 2, false, true));
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 2, false, true));
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 1, false, true));
                             }
                             ItemStack stack = new ItemStack(Items.DIAMOND_SWORD).copy();
                             stack.setCount(1);
-                            setStackInHand(Hand.MAIN_HAND, stack);
-                            if ((LivingEntity) this instanceof PlayerEntity _player)
-                                _player.getInventory().markDirty();
+                            this.setStackInHand(Hand.MAIN_HAND, stack);
                         });
                     }
                     case 10: {
                         ItemStack _setstack = new ItemStack(Items.GOLDEN_APPLE).copy();
                         _setstack.setCount(1);
-                        setStackInHand(Hand.MAIN_HAND, _setstack);
-                        if ((LivingEntity) this instanceof PlayerEntity _player)
-                            _player.getInventory().markDirty();
+                        this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
                             if (world instanceof World _level)
                                 SoundUtil.playSound(_level, x, y + 1, z, new Identifier("entity.generic.eat"), 1.2f, (float) MathHelper.nextDouble(Random.create(), 0.9, 1.1));
-                            swingHand(Hand.MAIN_HAND, true);
+                            this.swingHand(Hand.MAIN_HAND, true);
                         };
                         Timeout.create(0, runnable);
                         Timeout.create(5, runnable);
@@ -365,29 +363,25 @@ public class AlexEntity extends HostileEntity {
                         Timeout.create(25, runnable);
                         Timeout.create(30, () -> {
                             runnable.run();
-                            if (!getWorld().isClient) {
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 80, 4, false, true));
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 7200, 2, false, true));
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 2, false, true));
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 1, false, true));
+                            if (!this.getWorld().isClient) {
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 80, 4, false, true));
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 7200, 2, false, true));
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 2, false, true));
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 1, false, true));
                             }
                             ItemStack stack = new ItemStack(Items.DIAMOND_SWORD).copy();
                             stack.setCount(1);
-                            setStackInHand(Hand.MAIN_HAND, stack);
-                            if ((LivingEntity) this instanceof PlayerEntity _player)
-                                _player.getInventory().markDirty();
+                            this.setStackInHand(Hand.MAIN_HAND, stack);
                         });
                     }
                     case 11: {
                         ItemStack _setstack = new ItemStack(Items.GOLDEN_APPLE).copy();
                         _setstack.setCount(1);
-                        setStackInHand(Hand.MAIN_HAND, _setstack);
-                        if ((LivingEntity) this instanceof PlayerEntity _player)
-                            _player.getInventory().markDirty();
+                        this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
                             if (world instanceof World _level)
                                 SoundUtil.playSound(_level, x, y + 1, z, new Identifier("entity.generic.eat"), 1.2f, (float) MathHelper.nextDouble(Random.create(), 0.9, 1.1));
-                            swingHand(Hand.MAIN_HAND, true);
+                            this.swingHand(Hand.MAIN_HAND, true);
                         };
                         Timeout.create(0, runnable);
                         Timeout.create(5, runnable);
@@ -397,17 +391,15 @@ public class AlexEntity extends HostileEntity {
                         Timeout.create(25, runnable);
                         Timeout.create(30, () -> {
                             runnable.run();
-                            if (!getWorld().isClient) {
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 80, 4, false, true));
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 7200, 2, false, true));
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 2, false, true));
-                                addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 1, false, true));
+                            if (!this.getWorld().isClient) {
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 80, 4, false, true));
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 7200, 2, false, true));
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 2, false, true));
+                                this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 1, false, true));
                             }
                             ItemStack stack = new ItemStack(Items.DIAMOND_SWORD).copy();
                             stack.setCount(1);
-                            setStackInHand(Hand.MAIN_HAND, stack);
-                            if ((LivingEntity) this instanceof PlayerEntity _player)
-                                _player.getInventory().markDirty();
+                            this.setStackInHand(Hand.MAIN_HAND, stack);
                         });
                     }
                 }
@@ -436,17 +428,5 @@ public class AlexEntity extends HostileEntity {
     public void mobTick() {
         super.mobTick();
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
-    }
-
-    public static DefaultAttributeContainer.Builder createAttributes() {
-        DefaultAttributeContainer.Builder builder = MobEntity.createMobAttributes();
-        builder = builder.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.45);
-        builder = builder.add(EntityAttributes.GENERIC_MAX_HEALTH, 230);
-        builder = builder.add(EntityAttributes.GENERIC_ARMOR, 25);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 17);
-        builder = builder.add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64);
-        builder = builder.add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1);
-        builder = builder.add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.2);
-        return builder;
     }
 }
