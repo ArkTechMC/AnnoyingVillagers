@@ -42,7 +42,7 @@ public class RKSItem extends SwordItemBase {
                         SoundUtil.playSound(_level, x, y, z, new Identifier("entity.blaze.shoot"), 1, 1);
                     if ((WorldAccess) world instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.FLAME, x, y, z, 300, 0.5, 0.5, 0.5, 0.5);
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RUBY_SWORD.get()).copy();
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RUBY_SWORD.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.MAIN_HAND, _setstack);
                     entity.getInventory().markDirty();
@@ -58,7 +58,7 @@ public class RKSItem extends SwordItemBase {
                         SoundUtil.playSound(_level, x, y, z, new Identifier("entity.blaze.shoot"), 1, 1);
                     if ((WorldAccess) world instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.FLAME, x, y, z, 300, 0.5, 0.5, 0.5, 0.5);
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RUBY_SWORD.get()).copy();
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RUBY_SWORD.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.MAIN_HAND, _setstack);
                     entity.getInventory().markDirty();

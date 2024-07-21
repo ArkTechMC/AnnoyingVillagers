@@ -178,10 +178,10 @@ public class ChrisEntity extends HostileEntity {
                 if (world instanceof World _level)
                     SoundUtil.playSound(_level, x, y, z, new Identifier("block.anvil.use"), 1, 1);
                 this.equipStack(EquipmentSlot.CHEST, new ItemStack(AnnoyingModItems.GRAVE_S_PALADIN_CHESTPLATE.get()));
-                ItemStack stack = new ItemStack(AnnoyingModItems.DIAMOND_LONGSWORD.get()).copy();
+                ItemStack stack = new ItemStack(AnnoyingModItems.DIAMOND_LONGSWORD.get());
                 stack.setCount(1);
                 this.setStackInHand(Hand.MAIN_HAND, stack);
-                ItemStack _setstack = new ItemStack(AnnoyingModItems.DIAMOND_LONGSWORD.get()).copy();
+                ItemStack _setstack = new ItemStack(AnnoyingModItems.DIAMOND_LONGSWORD.get());
                 _setstack.setCount(1);
                 this.setStackInHand(Hand.OFF_HAND, _setstack);
                 if (world instanceof World _level)
@@ -204,7 +204,7 @@ public class ChrisEntity extends HostileEntity {
             for (Entity entityiterator : _entfound) {
                 if (this.getTarget() == entityiterator) {
                     if (attack == 1) {
-                        ItemStack _setstack = new ItemStack(Items.GOLDEN_APPLE).copy();
+                        ItemStack _setstack = new ItemStack(Items.GOLDEN_APPLE);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
@@ -226,16 +226,16 @@ public class ChrisEntity extends HostileEntity {
                                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 2, false, true));
                                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 1, false, true));
                             }
-                            ItemStack stack = new ItemStack(AnnoyingModItems.DIAMOND_LONGSWORD.get()).copy();
+                            ItemStack stack = new ItemStack(AnnoyingModItems.DIAMOND_LONGSWORD.get());
                             stack.setCount(1);
                             this.setStackInHand(Hand.MAIN_HAND, stack);
                         });
                     }
                     if (attack == 5) {
-                        ItemStack stack = new ItemStack(AnnoyingModItems.DIAMOND_LONGSWORD.get()).copy();
+                        ItemStack stack = new ItemStack(AnnoyingModItems.DIAMOND_LONGSWORD.get());
                         stack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, stack);
-                        ItemStack _setstack = new ItemStack(AnnoyingModItems.DIAMOND_LONGSWORD.get()).copy();
+                        ItemStack _setstack = new ItemStack(AnnoyingModItems.DIAMOND_LONGSWORD.get());
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.OFF_HAND, _setstack);
                         ((LivingEntity) this).equipStack(EquipmentSlot.CHEST, new ItemStack(AnnoyingModItems.GRAVE_S_PALADIN_CHESTPLATE.get()));
@@ -243,10 +243,10 @@ public class ChrisEntity extends HostileEntity {
                             SoundUtil.playSound(_level, x, y, z, new Identifier("item.armor.equip_diamond"), 1, 1);
                     }
                     if (attack == 6) {
-                        ItemStack stack = new ItemStack(AnnoyingModItems.PALADIN_S_SWORD.get()).copy();
+                        ItemStack stack = new ItemStack(AnnoyingModItems.PALADIN_S_SWORD.get());
                         stack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, stack);
-                        ItemStack _setstack = new ItemStack(AnnoyingModItems.PALADIN_S_SWORD.get()).copy();
+                        ItemStack _setstack = new ItemStack(AnnoyingModItems.PALADIN_S_SWORD.get());
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.OFF_HAND, _setstack);
                         ((LivingEntity) this).equipStack(EquipmentSlot.CHEST, new ItemStack(AnnoyingModItems.GRAVE_S_CHESTPLATE.get()));
@@ -254,7 +254,7 @@ public class ChrisEntity extends HostileEntity {
                             SoundUtil.playSound(_level, x, y, z, new Identifier("item.armor.equip_diamond"), 1, 1);
                     }
                     if (attack == 7) {
-                        ItemStack _setstack = new ItemStack(AnnoyingModItems.FISHING_ROD.get()).copy();
+                        ItemStack _setstack = new ItemStack(AnnoyingModItems.FISHING_ROD.get());
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
@@ -279,7 +279,7 @@ public class ChrisEntity extends HostileEntity {
                         }
                     }
                     if (attack == 8) {
-                        ItemStack _setstack = new ItemStack(Items.BOW).copy();
+                        ItemStack _setstack = new ItemStack(Items.BOW);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
@@ -312,7 +312,7 @@ public class ChrisEntity extends HostileEntity {
                         });
                     }
                     if (attack == 3) {
-                        ItemStack stack = new ItemStack(Items.SHIELD).copy();
+                        ItemStack stack = new ItemStack(Items.SHIELD);
                         stack.setCount(1);
                         this.setStackInHand(Hand.OFF_HAND, stack);
                         if (!this.getWorld().isClient)
@@ -325,7 +325,7 @@ public class ChrisEntity extends HostileEntity {
                         });
                     }
                     if (attack == 4) {
-                        ItemStack stack = new ItemStack(AnnoyingModItems.KNIFE_WITH_TNT.get()).copy();
+                        ItemStack stack = new ItemStack(AnnoyingModItems.KNIFE_WITH_TNT.get());
                         stack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, stack);
                         Timeout.create(15, () -> {
@@ -335,7 +335,7 @@ public class ChrisEntity extends HostileEntity {
                                 if (world instanceof World _level && !_level.isClient)
                                     _level.createExplosion(null, x, y, z, 5, World.ExplosionSourceType.TNT);
                                 this.swingHand(Hand.MAIN_HAND, true);
-                                ItemStack _setstack = new ItemStack(AnnoyingModItems.KNIFE.get()).copy();
+                                ItemStack _setstack = new ItemStack(AnnoyingModItems.KNIFE.get());
                                 _setstack.setCount(1);
                                 this.setStackInHand(Hand.MAIN_HAND, _setstack);
                             });

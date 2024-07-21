@@ -40,7 +40,7 @@ public class RGSItem extends SwordItemBase {
                     SoundUtil.playSound(world, x, y, z, new Identifier("entity.blaze.shoot"), 1, 1);
                     if (world instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.FLAME, x, y, z, 300, 0.5, 0.5, 0.5, 0.5);
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RUBY_KNIGHT_SWORD.get()).copy();
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RUBY_KNIGHT_SWORD.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.MAIN_HAND, _setstack);
                     entity.getInventory().markDirty();
@@ -55,7 +55,7 @@ public class RGSItem extends SwordItemBase {
                     SoundUtil.playSound(world, x, y, z, new Identifier("entity.blaze.shoot"), 1, 1);
                     if (world instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.FLAME, x, y, z, 300, 0.5, 0.5, 0.5, 0.5);
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RUBY_KNIGHT_SWORD.get()).copy();
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RUBY_KNIGHT_SWORD.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.MAIN_HAND, _setstack);
                     entity.getInventory().markDirty();

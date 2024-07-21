@@ -178,7 +178,7 @@ public class SteveEntity extends HostileEntity {
                 CommandHelper.execute(this, "tellraw @a \"<Steve> I have to put some armors on.\"");
                 if (world instanceof World _level)
                     SoundUtil.playSound(_level, x, y, z, new Identifier(AnnoyingVillagers.MOD_ID, "steve.putarmor"), 2, 1);
-                ItemStack stack = new ItemStack(Items.DIAMOND_CHESTPLATE).copy();
+                ItemStack stack = new ItemStack(Items.DIAMOND_CHESTPLATE);
                 stack.setCount(1);
                 this.setStackInHand(Hand.MAIN_HAND, stack);
                 this.swingHand(Hand.MAIN_HAND, true);
@@ -187,11 +187,11 @@ public class SteveEntity extends HostileEntity {
                         SoundUtil.playSound(_level, x, y, z, new Identifier(AnnoyingVillagers.MOD_ID, "item.armor.equip_diamond"), 2, 1);
                     this.equipStack(EquipmentSlot.CHEST, new ItemStack(Items.DIAMOND_CHESTPLATE));
                     this.getEquippedStack(EquipmentSlot.CHEST).addEnchantment(Enchantments.PROTECTION, 4);
-                    ItemStack stack1 = new ItemStack(Blocks.AIR).copy();
+                    ItemStack stack1 = new ItemStack(Blocks.AIR);
                     stack1.setCount(1);
                     this.setStackInHand(Hand.MAIN_HAND, stack1);
                     Timeout.create(5, () -> {
-                        ItemStack stack2 = new ItemStack(Items.DIAMOND_HELMET).copy();
+                        ItemStack stack2 = new ItemStack(Items.DIAMOND_HELMET);
                         stack2.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, stack2);
                         this.swingHand(Hand.MAIN_HAND, true);
@@ -201,7 +201,7 @@ public class SteveEntity extends HostileEntity {
                             this.equipStack(EquipmentSlot.HEAD, new ItemStack(Items.DIAMOND_HELMET));
                             LivingEntity _entGetArmor = this;
                             _entGetArmor.getEquippedStack(EquipmentSlot.CHEST).addEnchantment(Enchantments.PROTECTION, 4);
-                            ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD).copy();
+                            ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD);
                             _setstack.setCount(1);
                             this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         });
@@ -226,7 +226,7 @@ public class SteveEntity extends HostileEntity {
                         CommandHelper.execute(this, "tellraw @a \"<Steve> Instead,I'll just force you into submission!\"");
                         Timeout.create(90, () -> {
                             CommandHelper.execute(this, "tellraw @a \"<Steve> Then simply beat the answers out of you!\"");
-                            ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD).copy();
+                            ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD);
                             _setstack.setCount(1);
                             this.setStackInHand(Hand.MAIN_HAND, _setstack);
                             if (world instanceof World _level)
@@ -288,7 +288,7 @@ public class SteveEntity extends HostileEntity {
                         CommandHelper.execute(this, "tellraw @a \"<Steve> Wake Up!\"");
                         if (world instanceof World _level)
                             SoundUtil.playSound(_level, x, y, z, new Identifier(AnnoyingVillagers.MOD_ID, "legendary.sword.wake.up"), 1, 1);
-                        ItemStack _setstack = new ItemStack(AnnoyingModItems.AWAKENING_LEGENDARY_SWORD.get()).copy();
+                        ItemStack _setstack = new ItemStack(AnnoyingModItems.AWAKENING_LEGENDARY_SWORD.get());
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         if (world instanceof ServerWorld _level)
@@ -306,17 +306,17 @@ public class SteveEntity extends HostileEntity {
                         });
                     }
                     if (attack == 14) {
-                        ItemStack _setstack = new ItemStack(AnnoyingModItems.LEGENDARY_SWORD.get()).copy();
+                        ItemStack _setstack = new ItemStack(AnnoyingModItems.LEGENDARY_SWORD.get());
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                     }
                     if (attack == 15) {
-                        ItemStack _setstack = new ItemStack(AnnoyingModItems.LEGENDARY_SWORD.get()).copy();
+                        ItemStack _setstack = new ItemStack(AnnoyingModItems.LEGENDARY_SWORD.get());
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                     }
                     if (attack == 7) {
-                        ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD).copy();
+                        ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         this.getMainHandStack().addEnchantment(Enchantments.SHARPNESS, 10);
@@ -362,7 +362,7 @@ public class SteveEntity extends HostileEntity {
                         }
                     }
                     if (attack == 1) {
-                        ItemStack _setstack = new ItemStack(AnnoyingModItems.FISHING_ROD.get()).copy();
+                        ItemStack _setstack = new ItemStack(AnnoyingModItems.FISHING_ROD.get());
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
@@ -375,7 +375,7 @@ public class SteveEntity extends HostileEntity {
                         Timeout.create(10, runnable);
                     }
                     if (attack == 12) {
-                        ItemStack stack = new ItemStack(Items.ENCHANTED_GOLDEN_APPLE).copy();
+                        ItemStack stack = new ItemStack(Items.ENCHANTED_GOLDEN_APPLE);
                         stack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, stack);
                         Runnable runnable = () -> {
@@ -400,7 +400,7 @@ public class SteveEntity extends HostileEntity {
                         });
                     }
                     if (attack == 5) {
-                        ItemStack stack = new ItemStack(Items.ENCHANTED_GOLDEN_APPLE).copy();
+                        ItemStack stack = new ItemStack(Items.ENCHANTED_GOLDEN_APPLE);
                         stack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, stack);
                         Runnable runnable = () -> {
@@ -419,13 +419,13 @@ public class SteveEntity extends HostileEntity {
                             runnable.run();
                             if (!this.getWorld().isClient)
                                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 80, 4, false, true));
-                            ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD).copy();
+                            ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD);
                             _setstack.setCount(1);
                             this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         });
                     }
                     if (attack == 9) {
-                        ItemStack stack = new ItemStack(Items.ENCHANTED_GOLDEN_APPLE).copy();
+                        ItemStack stack = new ItemStack(Items.ENCHANTED_GOLDEN_APPLE);
                         stack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, stack);
                         Runnable runnable = () -> {
@@ -444,13 +444,13 @@ public class SteveEntity extends HostileEntity {
                             runnable.run();
                             if (!this.getWorld().isClient)
                                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 80, 4, false, true));
-                            ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD).copy();
+                            ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD);
                             _setstack.setCount(1);
                             this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         });
                     }
                     if (attack == 10) {
-                        ItemStack _setstack = new ItemStack(Items.BOW).copy();
+                        ItemStack _setstack = new ItemStack(Items.BOW);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {

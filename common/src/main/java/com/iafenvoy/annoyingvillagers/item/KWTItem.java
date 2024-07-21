@@ -30,7 +30,7 @@ public class KWTItem extends SwordItem {
             if (entity.getMainHandStack().getItem() == itemstack.getItem()) {
                 world.addParticle(ParticleTypes.FLASH, x, y, z, 0, 0, 0);
                 Timeout.create(1, () -> {
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.KNIFE.get()).copy();
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.KNIFE.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.MAIN_HAND, _setstack);
                     if ((LivingEntity) entity instanceof PlayerEntity _player)
@@ -47,7 +47,7 @@ public class KWTItem extends SwordItem {
             } else {
                 world.addParticle(ParticleTypes.FLASH, x, y, z, 0, 0, 0);
                 Timeout.create(1, () -> {
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.KNIFE.get()).copy();
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.KNIFE.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.OFF_HAND, _setstack);
                     if ((LivingEntity) entity instanceof PlayerEntity _player)

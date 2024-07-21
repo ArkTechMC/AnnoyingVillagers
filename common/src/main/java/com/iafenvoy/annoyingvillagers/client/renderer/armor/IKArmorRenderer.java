@@ -18,14 +18,30 @@ import java.util.Map;
 public class IKArmorRenderer implements IArmorRenderer {
     @Override
     public BipedEntityModel getHumanoidArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, BipedEntityModel defaultModel) {
-        BipedEntityModel armorModel = new BipedEntityModel<>(new ModelPart(Collections.emptyList(),
-                Map.of("head", new IKAModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(IKAModel.LAYER_LOCATION)).Head, "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "body",
-                        new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_arm",
-                        new ModelPart(Collections.emptyList(), Collections.emptyMap()), "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()), "left_leg",
-                        new ModelPart(Collections.emptyList(), Collections.emptyMap()))));
-        armorModel.sneaking = living.isSneaking();
-        armorModel.riding = defaultModel.riding;
-        armorModel.child = living.isBaby();
+        BipedEntityModel armorModel = null;
+        if (slot == EquipmentSlot.HEAD)
+            armorModel = new BipedEntityModel<>(new ModelPart(Collections.emptyList(), Map.of(
+                    "head", new IKAModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(IKAModel.LAYER_LOCATION)).Head,
+                    "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                    "body", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                    "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                    "left_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                    "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                    "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()))));
+        else if (slot == EquipmentSlot.CHEST)
+            armorModel = new BipedEntityModel<>(new ModelPart(Collections.emptyList(), Map.of(
+                    "body", new IKAModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(IKAModel.LAYER_LOCATION)).Body,
+                    "left_arm", new IKAModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(IKAModel.LAYER_LOCATION)).LeftArm,
+                    "right_arm", new IKAModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(IKAModel.LAYER_LOCATION)).RightArm,
+                    "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                    "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                    "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                    "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()))));
+        if (armorModel != null) {
+            armorModel.sneaking = living.isSneaking();
+            armorModel.riding = defaultModel.riding;
+            armorModel.child = living.isBaby();
+        }
         return armorModel;
     }
 

@@ -32,7 +32,7 @@ public class RSALItem extends AxeItem {
             if (entity.getMainHandStack().getItem() == itemstack.getItem()) {
                 world.addParticle(ParticleTypes.FLASH, x, y, z, 0, 0, 0);
                 Timeout.create(1, () -> {
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RED_STEEL_AXE_BASIC.get()).copy();
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RED_STEEL_AXE_BASIC.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.MAIN_HAND, _setstack);
                     entity.getInventory().markDirty();
@@ -44,7 +44,7 @@ public class RSALItem extends AxeItem {
             } else {
                 world.addParticle(ParticleTypes.FLASH, x, y, z, 0, 0, 0);
                 Timeout.create(1, () -> {
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RED_STEEL_AXE_BASIC.get()).copy();
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RED_STEEL_AXE_BASIC.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.MAIN_HAND, _setstack);
                     entity.getInventory().markDirty();

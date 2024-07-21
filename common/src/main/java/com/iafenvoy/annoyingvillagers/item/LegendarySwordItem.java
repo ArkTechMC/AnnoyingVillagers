@@ -36,7 +36,7 @@ public class LegendarySwordItem extends SwordItem {
                     SoundUtil.playSound(world, x, y, z, new Identifier("item.totem.use"), 1, 1);
                     if (world instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, x, y, z, 150, 0.5, 0.5, 0.5, 0.5);
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.AWAKENING_LEGENDARY_SWORD.get()).copy();
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.AWAKENING_LEGENDARY_SWORD.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.MAIN_HAND, _setstack);
                     entity.getInventory().markDirty();
@@ -51,7 +51,7 @@ public class LegendarySwordItem extends SwordItem {
                     SoundUtil.playSound(world, x, y, z, new Identifier("item.totem.use"), 1, 1);
                     if (world instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, x, y, z, 150, 0.5, 0.5, 0.5, 0.5);
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.AWAKENING_LEGENDARY_SWORD.get()).copy();
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.AWAKENING_LEGENDARY_SWORD.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.MAIN_HAND, _setstack);
                     entity.getInventory().markDirty();

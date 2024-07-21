@@ -143,7 +143,7 @@ public class BlueDemonEntity extends HostileEntity {
         EntityData retval = super.initialize(world, difficulty, reason, livingdata, tag);
         Timeout.create(20, () -> {
             CommandHelper.execute(this, "tellraw @a \"<Blue Demon> Are you my enemy?\"");
-            if ((WorldAccess) world instanceof World _level)
+            if (world instanceof World _level)
                 SoundUtil.playSound(_level, this.getX(), this.getY(), this.getZ(), new Identifier(AnnoyingVillagers.MOD_ID, "blue.demon.spawn"), 1, 1);
         });
         return retval;
@@ -182,10 +182,10 @@ public class BlueDemonEntity extends HostileEntity {
                     SoundUtil.playSound(_level, x, y, z, new Identifier("item.armor.equip_diamond"), 1, 1);
                     SoundUtil.playSound(_level, x, y, z, new Identifier(AnnoyingVillagers.MOD_ID, "blue.demon.ittrsp"), 1, 1);
                 }
-                ItemStack stack = new ItemStack(AnnoyingModItems.LEGENDARY_SWORD.get()).copy();
+                ItemStack stack = new ItemStack(AnnoyingModItems.LEGENDARY_SWORD.get());
                 stack.setCount(1);
                 this.setStackInHand(Hand.MAIN_HAND, stack);
-                ItemStack _setstack = new ItemStack(Blocks.AIR).copy();
+                ItemStack _setstack = new ItemStack(Blocks.AIR);
                 _setstack.setCount(1);
                 this.setStackInHand(Hand.OFF_HAND, _setstack);
                 CommandHelper.execute(this, "tellraw @a \"<Blue Demon> It's time to respawn,player...\"");
@@ -237,7 +237,7 @@ public class BlueDemonEntity extends HostileEntity {
                     Timeout.create(12, runnable);
                     Timeout.create(22, runnable);
                     Timeout.create(24, () -> {
-                        ItemStack _setstack = new ItemStack(Blocks.CAVE_AIR).copy();
+                        ItemStack _setstack = new ItemStack(Blocks.CAVE_AIR);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.OFF_HAND, _setstack);
                     });
@@ -268,7 +268,7 @@ public class BlueDemonEntity extends HostileEntity {
                     Timeout.create(12, runnable);
                     Timeout.create(22, runnable);
                     Timeout.create(24, () -> {
-                        ItemStack _setstack = new ItemStack(Blocks.CAVE_AIR).copy();
+                        ItemStack _setstack = new ItemStack(Blocks.CAVE_AIR);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.OFF_HAND, _setstack);
                     });

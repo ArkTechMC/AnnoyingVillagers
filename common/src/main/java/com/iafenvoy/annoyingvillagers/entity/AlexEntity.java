@@ -169,7 +169,7 @@ public class AlexEntity extends HostileEntity {
             if (this.getTarget() == entityiterator) {
                 switch (attack) {
                     case 1: {
-                        ItemStack _setstack = new ItemStack(Items.GOLDEN_APPLE).copy();
+                        ItemStack _setstack = new ItemStack(Items.GOLDEN_APPLE);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
@@ -191,7 +191,7 @@ public class AlexEntity extends HostileEntity {
                                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 2, false, true));
                                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 1, false, true));
                             }
-                            ItemStack stack = new ItemStack(Items.DIAMOND_SWORD).copy();
+                            ItemStack stack = new ItemStack(Items.DIAMOND_SWORD);
                             stack.setCount(1);
                             this.setStackInHand(Hand.MAIN_HAND, stack);
                         });
@@ -209,7 +209,7 @@ public class AlexEntity extends HostileEntity {
                         }
                     }
                     case 6: {
-                        ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD).copy();
+                        ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
@@ -222,7 +222,7 @@ public class AlexEntity extends HostileEntity {
                         Timeout.create(10, runnable);
                     }
                     case 7: {
-                        ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD).copy();
+                        ItemStack _setstack = new ItemStack(Items.DIAMOND_SWORD);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
@@ -247,7 +247,7 @@ public class AlexEntity extends HostileEntity {
                         }
                     }
                     case 8: {
-                        ItemStack _setstack = new ItemStack(Items.BOW).copy();
+                        ItemStack _setstack = new ItemStack(Items.BOW);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
@@ -271,7 +271,7 @@ public class AlexEntity extends HostileEntity {
                         Timeout.create(30, runnable);
                     }
                     case 3: {
-                        ItemStack _setstack = new ItemStack(Items.BOW).copy();
+                        ItemStack _setstack = new ItemStack(Items.BOW);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
@@ -295,7 +295,7 @@ public class AlexEntity extends HostileEntity {
                         Timeout.create(30, runnable);
                     }
                     case 4: {
-                        ItemStack _setstack = new ItemStack(Items.BOW).copy();
+                        ItemStack _setstack = new ItemStack(Items.BOW);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
@@ -319,7 +319,7 @@ public class AlexEntity extends HostileEntity {
                         Timeout.create(30, runnable);
                     }
                     case 9: {
-                        ItemStack _setstack = new ItemStack(Items.GOLDEN_APPLE).copy();
+                        ItemStack _setstack = new ItemStack(Items.GOLDEN_APPLE);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
@@ -341,13 +341,13 @@ public class AlexEntity extends HostileEntity {
                                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 2, false, true));
                                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 1, false, true));
                             }
-                            ItemStack stack = new ItemStack(Items.DIAMOND_SWORD).copy();
+                            ItemStack stack = new ItemStack(Items.DIAMOND_SWORD);
                             stack.setCount(1);
                             this.setStackInHand(Hand.MAIN_HAND, stack);
                         });
                     }
                     case 10: {
-                        ItemStack _setstack = new ItemStack(Items.GOLDEN_APPLE).copy();
+                        ItemStack _setstack = new ItemStack(Items.GOLDEN_APPLE);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
@@ -369,13 +369,13 @@ public class AlexEntity extends HostileEntity {
                                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 2, false, true));
                                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 1, false, true));
                             }
-                            ItemStack stack = new ItemStack(Items.DIAMOND_SWORD).copy();
+                            ItemStack stack = new ItemStack(Items.DIAMOND_SWORD);
                             stack.setCount(1);
                             this.setStackInHand(Hand.MAIN_HAND, stack);
                         });
                     }
                     case 11: {
-                        ItemStack _setstack = new ItemStack(Items.GOLDEN_APPLE).copy();
+                        ItemStack _setstack = new ItemStack(Items.GOLDEN_APPLE);
                         _setstack.setCount(1);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         Runnable runnable = () -> {
@@ -397,7 +397,7 @@ public class AlexEntity extends HostileEntity {
                                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 2, false, true));
                                 this.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 1, false, true));
                             }
-                            ItemStack stack = new ItemStack(Items.DIAMOND_SWORD).copy();
+                            ItemStack stack = new ItemStack(Items.DIAMOND_SWORD);
                             stack.setCount(1);
                             this.setStackInHand(Hand.MAIN_HAND, stack);
                         });
