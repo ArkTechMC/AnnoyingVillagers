@@ -8,7 +8,6 @@ import com.iafenvoy.annoyingvillagers.util.SoundUtil;
 import com.iafenvoy.annoyingvillagers.util.Timeout;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ExplosiveProjectileEntity;
 import net.minecraft.entity.projectile.SmallFireballEntity;
@@ -76,27 +75,25 @@ public class RKSItem extends SwordItemBase {
     public boolean onEntitySwing(ItemStack itemstack, Entity entity) {
         boolean retval = super.onEntitySwing(itemstack, entity);
         WorldAccess world = entity.getWorld();
-        if (entity != null) {
-            if (!(entity instanceof PlayerEntity _plrCldCheck1 && _plrCldCheck1.getItemCooldownManager().isCoolingDown(itemstack.getItem()))) {
-                if (entity.isSneaking()) {
-                    if (entity instanceof PlayerEntity _player)
-                        _player.getItemCooldownManager().set(itemstack.getItem(), 100);
-                    Runnable runnable = () -> {
-                        if (world instanceof World _level)
-                            SoundUtil.playSound(_level, entity.getX(), entity.getY(), entity.getZ(), new Identifier("entity.blaze.shoot"), 1, 1);
-                        World projectileLevel = entity.getWorld();
-                        if (!projectileLevel.isClient) {
-                            ExplosiveProjectileEntity _entityToSpawn = new SmallFireballEntity(EntityType.SMALL_FIREBALL, projectileLevel);
-                            _entityToSpawn.setOwner(entity);
-                            _entityToSpawn.setPosition(entity.getX(), entity.getEyeY() - 0.1, entity.getZ());
-                            _entityToSpawn.setVelocity(entity.getRotationVector().x, entity.getRotationVector().y, entity.getRotationVector().z, 4, 0);
-                            projectileLevel.spawnEntity(_entityToSpawn);
-                        }
-                    };
-                    Timeout.create(0, runnable);
-                    Timeout.create(10, runnable);
-                    Timeout.create(20, runnable);
-                }
+        if (!(entity instanceof PlayerEntity _plrCldCheck1 && _plrCldCheck1.getItemCooldownManager().isCoolingDown(itemstack.getItem()))) {
+            if (entity.isSneaking()) {
+                if (entity instanceof PlayerEntity _player)
+                    _player.getItemCooldownManager().set(itemstack.getItem(), 100);
+                Runnable runnable = () -> {
+                    if (world instanceof World _level)
+                        SoundUtil.playSound(_level, entity.getX(), entity.getY(), entity.getZ(), new Identifier("entity.blaze.shoot"), 1, 1);
+                    World projectileLevel = entity.getWorld();
+                    if (!projectileLevel.isClient) {
+                        ExplosiveProjectileEntity _entityToSpawn = new SmallFireballEntity(EntityType.SMALL_FIREBALL, projectileLevel);
+                        _entityToSpawn.setOwner(entity);
+                        _entityToSpawn.setPosition(entity.getX(), entity.getEyeY() - 0.1, entity.getZ());
+                        _entityToSpawn.setVelocity(entity.getRotationVector().x, entity.getRotationVector().y, entity.getRotationVector().z, 4, 0);
+                        projectileLevel.spawnEntity(_entityToSpawn);
+                    }
+                };
+                Timeout.create(0, runnable);
+                Timeout.create(10, runnable);
+                Timeout.create(20, runnable);
             }
         }
         return retval;

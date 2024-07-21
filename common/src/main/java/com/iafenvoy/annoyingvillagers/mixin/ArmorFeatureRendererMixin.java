@@ -32,8 +32,10 @@ public abstract class ArmorFeatureRendererMixin<T extends LivingEntity, M extend
         ItemStack stack = entity.getEquippedStack(armorSlot);
         IArmorRenderer<T> renderer = (IArmorRenderer<T>) IArmorRenderer.RENDERERS.get(stack.getItem());
         if (renderer != null) {
+            BipedEntityModel<T> armorModel=renderer.getHumanoidArmorModel(entity, stack, armorSlot, this.getContextModel());
+            this.getContextModel().copyBipedStateTo(armorModel);
             VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getArmorCutoutNoCull(renderer.getArmorTexture(stack, entity, armorSlot)));
-            renderer.getHumanoidArmorModel(entity, stack, armorSlot, this.getContextModel()).render(matrices, consumer, light, OverlayTexture.DEFAULT_UV, 1, 1, 1, 1);
+            armorModel.render(matrices, consumer, light, OverlayTexture.DEFAULT_UV, 1, 1, 1, 1);
             ci.cancel();
         }
     }

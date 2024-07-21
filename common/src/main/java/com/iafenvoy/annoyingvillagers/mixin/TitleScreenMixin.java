@@ -31,7 +31,7 @@ public abstract class TitleScreenMixin extends Screen {
     private long backgroundFadeStart;
 
     @Unique
-    private DrawContext context;
+    private DrawContext annoyingVillagers$context;
 
     protected TitleScreenMixin(Text title) {
         super(title);
@@ -39,20 +39,20 @@ public abstract class TitleScreenMixin extends Screen {
 
     @Inject(method = "render", at = @At("HEAD"))
     private void onPreRender(DrawContext context, int mouseX, int mouseY, float delta, CallbackInfo ci) {
-        this.context = context;
+        this.annoyingVillagers$context = context;
     }
 
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/RotatingCubeMapRenderer;render(FF)V"))
     private void onRenderBackground(RotatingCubeMapRenderer instance, float delta, float alpha) {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.enableBlend();
-        this.context.drawTexture(new Identifier(AnnoyingVillagers.MOD_ID, "textures/gui/background.png"), 0, 0, 0, 0, this.width, this.height, this.width, this.height);
+        this.annoyingVillagers$context.drawTexture(new Identifier(AnnoyingVillagers.MOD_ID, "textures/gui/background.png"), 0, 0, 0, 0, this.width, this.height, this.width, this.height);
 
         float f = this.doBackgroundFade ? (float) (Util.getMeasuringTimeMs() - this.backgroundFadeStart) / 1000.0F : 1.0F;
         float g = this.doBackgroundFade ? MathHelper.clamp(f - 1.0F, 0.0F, 1.0F) : 1.0F;
         int i = MathHelper.ceil(g * 255.0F) << 24;
         if ((i & -67108864) != 0 && Platform.isFabric())
-            this.context.drawText(this.textRenderer, "Annoying Villager", 2, this.height - 20, 0x00FFFFFF | i, false);
+            this.annoyingVillagers$context.drawText(this.textRenderer, "Annoying Villager", 2, this.height - 20, 0x00FFFFFF | i, false);
     }
 
     @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/LogoDrawer;draw(Lnet/minecraft/client/gui/DrawContext;IF)V"))

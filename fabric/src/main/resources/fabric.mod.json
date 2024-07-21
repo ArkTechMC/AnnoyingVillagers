@@ -5,8 +5,13 @@
 
   "name": "Annoying Villagers",
   "description": "",
-  "authors": [],
-  "contact": {},
+  "authors": [
+    "ShuiXingShow",
+    "IAFEnvoy"
+  ],
+  "contact": {
+    "sources": "https://github.com/ArkTechMC/AnnoyingVillagers"
+  },
 
   "license": "All Rights Reserved",
   "icon": "logo.png",
@@ -21,7 +26,6 @@
     ]
   },
   "mixins": [
-    "annoying_villagers.mixins.json",
     "annoying_villagers-common.mixins.json"
   ],
   "depends": {

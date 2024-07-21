@@ -14,7 +14,7 @@ public class AnnoyingVillagers {
         AnnoyingModItems.REGISTRY.register();
         AnnoyingModItemGroups.REGISTRY.register();
         AnnoyingModSounds.REGISTRY.register();
-        AnnoyingModEntities.registerAttributes();
+        AnnoyingModEntities.init();
     }
 
     public static void process() {

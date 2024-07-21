@@ -4,8 +4,6 @@ import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItems;
 import com.iafenvoy.annoyingvillagers.registry.util.ToolMaterialUtil;
 import com.iafenvoy.annoyingvillagers.util.Timeout;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
@@ -14,7 +12,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 
 public class RSABItem extends AxeItem {
     public RSABItem() {
