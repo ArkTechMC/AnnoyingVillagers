@@ -32,3 +32,6 @@ This mod is All Right Reserved. But you can feel free to use this mod in you mod
 to do is credit us in some place.
 
 Read the license for other situations.
+
+### Our Discord Server
+[https://discord.gg/NDzz2upqAk](https://discord.gg/NDzz2upqAk)
