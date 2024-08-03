@@ -1,8 +1,8 @@
 package com.iafenvoy.annoyingvillagers.item;
 
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
-import com.iafenvoy.annoyingvillagers.registry.util.ToolMaterialUtil;
-import com.iafenvoy.annoyingvillagers.util.SoundUtil;
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.LivingEntity;

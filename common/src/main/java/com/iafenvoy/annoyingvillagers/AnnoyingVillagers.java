@@ -4,7 +4,6 @@ import com.iafenvoy.annoyingvillagers.client.renderer.IArmorRenderer;
 import com.iafenvoy.annoyingvillagers.client.renderer.armor.GSCWPSSArmorRenderer;
 import com.iafenvoy.annoyingvillagers.client.renderer.armor.IKArmorRenderer;
 import com.iafenvoy.annoyingvillagers.registry.*;
-import com.iafenvoy.annoyingvillagers.util.Timeout;
 
 public class AnnoyingVillagers {
     public static final String MOD_ID = "annoying_villagers";
@@ -18,7 +17,6 @@ public class AnnoyingVillagers {
     }
 
     public static void process() {
-        Timeout.startTimeout();
     }
 
     public static void initClient() {

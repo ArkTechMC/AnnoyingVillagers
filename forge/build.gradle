@@ -26,6 +26,8 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+
+    modImplementation "curse.maven:neptune-lib-1071077:5567625"
 }
 
 processResources {

@@ -2,8 +2,8 @@ package com.iafenvoy.annoyingvillagers.registry;
 
 import com.iafenvoy.annoyingvillagers.AnnoyingVillagers;
 import com.iafenvoy.annoyingvillagers.item.*;
-import com.iafenvoy.annoyingvillagers.registry.util.FoilItemBase;
-import com.iafenvoy.annoyingvillagers.registry.util.ToolMaterialUtil;
+import com.iafenvoy.neptune.object.item.FoilItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import dev.architectury.core.item.ArchitecturySpawnEggItem;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;

@@ -2,10 +2,10 @@ package com.iafenvoy.annoyingvillagers.item;
 
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItems;
-import com.iafenvoy.annoyingvillagers.registry.util.SwordItemBase;
-import com.iafenvoy.annoyingvillagers.registry.util.ToolMaterialUtil;
-import com.iafenvoy.annoyingvillagers.util.SoundUtil;
-import com.iafenvoy.annoyingvillagers.util.Timeout;
+import com.iafenvoy.neptune.object.item.SwordItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.util.Timeout;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;

@@ -2,9 +2,9 @@ package com.iafenvoy.annoyingvillagers.item;
 
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItems;
-import com.iafenvoy.annoyingvillagers.registry.util.FoilSwordItemBase;
-import com.iafenvoy.annoyingvillagers.registry.util.ToolMaterialUtil;
-import com.iafenvoy.annoyingvillagers.util.Timeout;
+import com.iafenvoy.neptune.object.item.FoilSwordItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
+import com.iafenvoy.neptune.util.Timeout;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;

@@ -33,5 +33,5 @@ to do is credit us in some place.
 
 Read the license for other situations.
 
-### Our Discord Server
+### Discord Server
 [https://discord.gg/NDzz2upqAk](https://discord.gg/NDzz2upqAk)

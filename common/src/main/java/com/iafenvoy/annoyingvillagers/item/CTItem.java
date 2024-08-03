@@ -1,8 +1,9 @@
 package com.iafenvoy.annoyingvillagers.item;
 
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
-import com.iafenvoy.annoyingvillagers.registry.util.ToolMaterialUtil;
-import com.iafenvoy.annoyingvillagers.util.SoundUtil;
+import com.iafenvoy.neptune.object.item.FoilSwordItemBase;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
+import com.iafenvoy.neptune.object.SoundUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;

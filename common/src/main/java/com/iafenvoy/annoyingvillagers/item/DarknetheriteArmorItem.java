@@ -1,7 +1,7 @@
 package com.iafenvoy.annoyingvillagers.item;
 
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
-import com.iafenvoy.annoyingvillagers.registry.util.ArmorMaterialUtil;
+import com.iafenvoy.neptune.object.item.ArmorMaterialUtil;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;

@@ -2,9 +2,9 @@ package com.iafenvoy.annoyingvillagers.item;
 
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItems;
-import com.iafenvoy.annoyingvillagers.registry.util.ToolMaterialUtil;
-import com.iafenvoy.annoyingvillagers.util.SoundUtil;
-import com.iafenvoy.annoyingvillagers.util.Timeout;
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
+import com.iafenvoy.neptune.util.Timeout;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

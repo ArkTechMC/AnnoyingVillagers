@@ -1,11 +1,11 @@
 package com.iafenvoy.annoyingvillagers.entity;
 
 import com.iafenvoy.annoyingvillagers.AnnoyingVillagers;
-import com.iafenvoy.annoyingvillagers.client.renderer.Stage;
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItems;
-import com.iafenvoy.annoyingvillagers.util.CommandHelper;
-import com.iafenvoy.annoyingvillagers.util.SoundUtil;
-import com.iafenvoy.annoyingvillagers.util.Timeout;
+import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.render.Stage;
+import com.iafenvoy.neptune.util.CommandHelper;
+import com.iafenvoy.neptune.util.Timeout;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
