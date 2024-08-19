@@ -1,8 +1,8 @@
-package com.iafenvoy.annoyingvillagers.item;
+package com.iafenvoy.annoyingvillagers.item.sword;
 
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
-import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.Timeout;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;

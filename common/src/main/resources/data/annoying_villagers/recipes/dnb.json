@@ -4,7 +4,7 @@
     "item": "minecraft:netherite_upgrade_smithing_template"
   },
   "base": {
-    "item": "annoying_villagers:magic_diamond_boots"
+    "item": "annoying_villagers:enchanted_diamond_boots"
   },
   "addition": {
     "item": "annoying_villagers:darknetherite_ingot"

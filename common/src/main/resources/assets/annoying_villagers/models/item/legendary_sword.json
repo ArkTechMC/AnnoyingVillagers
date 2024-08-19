@@ -5,6 +5,14 @@
 		"0": "annoying_villagers:item/legendary_sword",
 		"particle": "annoying_villagers:item/legendary_sword"
 	},
+	"overrides": [
+		{
+			"predicate": {
+				"annoying_villagers:awakening": 1
+			},
+			"model": "annoying_villagers:item/awakening_legendary_sword"
+		}
+	],
 	"elements": [
 		{
 			"from": [-16, -16, 7.3],

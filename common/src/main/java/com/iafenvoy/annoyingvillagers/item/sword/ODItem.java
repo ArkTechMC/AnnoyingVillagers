@@ -1,9 +1,8 @@
-package com.iafenvoy.annoyingvillagers.item;
+package com.iafenvoy.annoyingvillagers.item.sword;
 
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
-import com.iafenvoy.neptune.object.item.FoilSwordItemBase;
-import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.object.SoundUtil;
+import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
@@ -11,9 +10,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-public class CTItem extends SwordItem {
-    public CTItem() {
-        super(ToolMaterialUtil.of(64, 6, 0.5f, 5, 15), 3, -2.8f, new Settings().arch$tab(AnnoyingModItemGroups.ORDINARY_WEAPONS));
+public class ODItem extends SwordItem {
+    public ODItem() {
+        super(ToolMaterialUtil.of(64, 6, 1, 5, 15), 3, -2.8f, new Settings().arch$tab(AnnoyingModItemGroups.ORDINARY_WEAPONS));
     }
 
     @Override

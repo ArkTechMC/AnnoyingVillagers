@@ -1,7 +1,9 @@
 package com.iafenvoy.annoyingvillagers.registry;
 
 import com.iafenvoy.annoyingvillagers.AnnoyingVillagers;
-import com.iafenvoy.annoyingvillagers.item.*;
+import com.iafenvoy.annoyingvillagers.item.armor.*;
+import com.iafenvoy.annoyingvillagers.item.sword.*;
+import com.iafenvoy.annoyingvillagers.item.tool.*;
 import com.iafenvoy.neptune.object.item.FoilItemBase;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import dev.architectury.core.item.ArchitecturySpawnEggItem;
@@ -20,7 +22,6 @@ import java.util.function.Supplier;
 public class AnnoyingModItems {
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(AnnoyingVillagers.MOD_ID, RegistryKeys.ITEM);
     public static final RegistrySupplier<Item> LEGENDARY_SWORD = register("legendary_sword", LegendarySwordItem::new);
-    public static final RegistrySupplier<Item> AWAKENING_LEGENDARY_SWORD = register("awakening_legendary_sword", AwakeningLegendarySwordItem::new);
     public static final RegistrySupplier<Item> WOOPIE = register("woopie", WoopieItem::new);
     public static final RegistrySupplier<Item> DIAMOND_LONGSWORD = register("diamond_longsword", () -> new SwordItem(ToolMaterialUtil.of(1531, 10, 3.5f, 3, 12), 3, -2.2f, new Item.Settings().arch$tab(AnnoyingModItemGroups.ORDINARY_WEAPONS)));
     public static final RegistrySupplier<Item> DIAMOND_GREATSWORD = register("diamond_greatsword", () -> new SwordItem(ToolMaterialUtil.of(1531, 10, 6.5f, 3, 12), 3, -3.2f, new Item.Settings().arch$tab(AnnoyingModItemGroups.ORDINARY_WEAPONS)));

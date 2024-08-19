@@ -1,6 +1,7 @@
 package com.iafenvoy.annoyingvillagers.entity;
 
 import com.iafenvoy.annoyingvillagers.AnnoyingVillagers;
+import com.iafenvoy.annoyingvillagers.item.sword.LegendarySwordItem;
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItems;
 import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.render.Stage;
@@ -288,8 +289,9 @@ public class SteveEntity extends HostileEntity {
                         CommandHelper.execute(this, "tellraw @a \"<Steve> Wake Up!\"");
                         if (world instanceof World _level)
                             SoundUtil.playSound(_level, x, y, z, new Identifier(AnnoyingVillagers.MOD_ID, "legendary.sword.wake.up"), 1, 1);
-                        ItemStack _setstack = new ItemStack(AnnoyingModItems.AWAKENING_LEGENDARY_SWORD.get());
+                        ItemStack _setstack = new ItemStack(AnnoyingModItems.LEGENDARY_SWORD.get());
                         _setstack.setCount(1);
+                        _setstack.getOrCreateNbt().putBoolean(LegendarySwordItem.AWAKENING, true);
                         this.setStackInHand(Hand.MAIN_HAND, _setstack);
                         if (world instanceof ServerWorld _level)
                             _level.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, x, (y + 10), z, 35, 0.2, 0.2, 0.2, 0.2);

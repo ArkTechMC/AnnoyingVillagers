@@ -1,10 +1,10 @@
-package com.iafenvoy.annoyingvillagers.item;
+package com.iafenvoy.annoyingvillagers.item.sword;
 
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItems;
+import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.item.SwordItemBase;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
-import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.util.Timeout;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -21,9 +21,9 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-public class RKSItem extends SwordItemBase {
-    public RKSItem() {
-        super(ToolMaterialUtil.of(1731, 17, 17.5f, 5, 23), 3, -2.3f, new Settings().arch$tab(AnnoyingModItemGroups.ORDINARY_WEAPONS));
+public class RSItem extends SwordItemBase {
+    public RSItem() {
+        super(ToolMaterialUtil.of(1731, 17, 16, 5, 23), 3, -2.4f, new Settings().arch$tab(AnnoyingModItemGroups.ORDINARY_WEAPONS));
     }
 
     @Override
@@ -37,11 +37,10 @@ public class RKSItem extends SwordItemBase {
             if (entity.getMainHandStack().getItem() == itemstack.getItem()) {
                 world.addParticle(ParticleTypes.FLASH, x, y, z, 0, 0, 0);
                 Timeout.create(1, () -> {
-                    if ((WorldAccess) world instanceof World _level)
-                        SoundUtil.playSound(_level, x, y, z, new Identifier("entity.blaze.shoot"), 1, 1);
-                    if ((WorldAccess) world instanceof ServerWorld _level)
+                    SoundUtil.playSound(world, x, y, z, new Identifier("entity.blaze.shoot"), 1, 1);
+                    if (world instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.FLAME, x, y, z, 300, 0.5, 0.5, 0.5, 0.5);
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RUBY_SWORD.get());
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RUBY_GREATSWORD.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.MAIN_HAND, _setstack);
                     entity.getInventory().markDirty();
@@ -53,11 +52,10 @@ public class RKSItem extends SwordItemBase {
             } else {
                 world.addParticle(ParticleTypes.FLASH, x, y, z, 0, 0, 0);
                 Timeout.create(1, () -> {
-                    if ((WorldAccess) world instanceof World _level)
-                        SoundUtil.playSound(_level, x, y, z, new Identifier("entity.blaze.shoot"), 1, 1);
-                    if ((WorldAccess) world instanceof ServerWorld _level)
+                    SoundUtil.playSound(world, x, y, z, new Identifier("entity.blaze.shoot"), 1, 1);
+                    if (world instanceof ServerWorld _level)
                         _level.spawnParticles(ParticleTypes.FLAME, x, y, z, 300, 0.5, 0.5, 0.5, 0.5);
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RUBY_SWORD.get());
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RUBY_GREATSWORD.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.MAIN_HAND, _setstack);
                     entity.getInventory().markDirty();

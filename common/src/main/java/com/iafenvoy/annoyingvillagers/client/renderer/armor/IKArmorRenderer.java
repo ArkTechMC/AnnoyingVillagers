@@ -2,7 +2,7 @@ package com.iafenvoy.annoyingvillagers.client.renderer.armor;
 
 import com.iafenvoy.annoyingvillagers.AnnoyingVillagers;
 import com.iafenvoy.annoyingvillagers.client.model.IKAModel;
-import com.iafenvoy.annoyingvillagers.client.renderer.IArmorRenderer;
+import com.iafenvoy.neptune.render.armor.IArmorRendererBase;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
@@ -15,7 +15,7 @@ import net.minecraft.util.Identifier;
 import java.util.Collections;
 import java.util.Map;
 
-public class IKArmorRenderer implements IArmorRenderer {
+public class IKArmorRenderer implements IArmorRendererBase {
     @Override
     public BipedEntityModel getHumanoidArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, BipedEntityModel defaultModel) {
         BipedEntityModel armorModel = null;

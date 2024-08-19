@@ -1,8 +1,7 @@
-package com.iafenvoy.annoyingvillagers.item;
+package com.iafenvoy.annoyingvillagers.item.tool;
 
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItems;
-import com.iafenvoy.neptune.object.item.SwordItemBase;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.Timeout;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,9 +13,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class RSABItem extends AxeItem {
-    public RSABItem() {
-        super(ToolMaterialUtil.of(3576, 17, 7, 5, 27), 3, -2.2f, new Settings().arch$tab(AnnoyingModItemGroups.ORDINARY_WEAPONS));
+public class RSALItem extends AxeItem {
+    public RSALItem() {
+        super(ToolMaterialUtil.of(3576, 17, 9.5f, 5, 27), 3, -2.5f, new Settings().arch$tab(AnnoyingModItemGroups.ORDINARY_WEAPONS));
     }
 
     @Override
@@ -30,7 +29,7 @@ public class RSABItem extends AxeItem {
             if (entity.getMainHandStack().getItem() == itemstack.getItem()) {
                 world.addParticle(ParticleTypes.FLASH, x, y, z, 0, 0, 0);
                 Timeout.create(1, () -> {
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RED_STEEL_AXE.get());
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RED_STEEL_AXE_BASIC.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.MAIN_HAND, _setstack);
                     entity.getInventory().markDirty();
@@ -42,7 +41,7 @@ public class RSABItem extends AxeItem {
             } else {
                 world.addParticle(ParticleTypes.FLASH, x, y, z, 0, 0, 0);
                 Timeout.create(1, () -> {
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RED_STEEL_AXE.get());
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.RED_STEEL_AXE_BASIC.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.MAIN_HAND, _setstack);
                     entity.getInventory().markDirty();

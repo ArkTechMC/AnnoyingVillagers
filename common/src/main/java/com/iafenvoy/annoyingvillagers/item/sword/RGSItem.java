@@ -1,4 +1,4 @@
-package com.iafenvoy.annoyingvillagers.item;
+package com.iafenvoy.annoyingvillagers.item.sword;
 
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItems;

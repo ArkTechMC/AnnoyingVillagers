@@ -1,25 +1,22 @@
-package com.iafenvoy.annoyingvillagers.item;
+package com.iafenvoy.annoyingvillagers.item.sword;
 
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItems;
-import com.iafenvoy.neptune.object.SoundUtil;
 import com.iafenvoy.neptune.object.item.ToolMaterialUtil;
 import com.iafenvoy.neptune.util.Timeout;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class LegendarySwordItem extends SwordItem {
-    public LegendarySwordItem() {
-        super(ToolMaterialUtil.of(9999, 17, 19, 5, 27), 3, -2.4f, new Item.Settings().arch$tab(AnnoyingModItemGroups.ORDINARY_WEAPONS));
+public class KWTItem extends SwordItem {
+    public KWTItem() {
+        super(ToolMaterialUtil.of(250, 6, 1.5f, 2, 7), 3, -1.8f, new Settings().arch$tab(AnnoyingModItemGroups.ORDINARY_WEAPONS));
     }
 
     @Override
@@ -33,32 +30,32 @@ public class LegendarySwordItem extends SwordItem {
             if (entity.getMainHandStack().getItem() == itemstack.getItem()) {
                 world.addParticle(ParticleTypes.FLASH, x, y, z, 0, 0, 0);
                 Timeout.create(1, () -> {
-                    SoundUtil.playSound(world, x, y, z, new Identifier("item.totem.use"), 1, 1);
-                    if (world instanceof ServerWorld _level)
-                        _level.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, x, y, z, 150, 0.5, 0.5, 0.5, 0.5);
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.AWAKENING_LEGENDARY_SWORD.get());
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.KNIFE.get());
                     _setstack.setCount(1);
                     entity.setStackInHand(Hand.MAIN_HAND, _setstack);
-                    entity.getInventory().markDirty();
+                    if ((LivingEntity) entity instanceof PlayerEntity _player)
+                        _player.getInventory().markDirty();
                     NbtCompound _nbtTag = itemstack.getNbt();
                     if (_nbtTag != null)
                         entity.getMainHandStack().setNbt(_nbtTag.copy());
                     entity.getItemCooldownManager().set(entity.getMainHandStack().getItem(), 100);
+                    if (!world.isClient)
+                        world.createExplosion(null, x, y, z, 5, World.ExplosionSourceType.TNT);
                 });
             } else {
                 world.addParticle(ParticleTypes.FLASH, x, y, z, 0, 0, 0);
                 Timeout.create(1, () -> {
-                    SoundUtil.playSound(world, x, y, z, new Identifier("item.totem.use"), 1, 1);
-                    if (world instanceof ServerWorld _level)
-                        _level.spawnParticles(ParticleTypes.TOTEM_OF_UNDYING, x, y, z, 150, 0.5, 0.5, 0.5, 0.5);
-                    ItemStack _setstack = new ItemStack(AnnoyingModItems.AWAKENING_LEGENDARY_SWORD.get());
+                    ItemStack _setstack = new ItemStack(AnnoyingModItems.KNIFE.get());
                     _setstack.setCount(1);
-                    entity.setStackInHand(Hand.MAIN_HAND, _setstack);
-                    entity.getInventory().markDirty();
+                    entity.setStackInHand(Hand.OFF_HAND, _setstack);
+                    if ((LivingEntity) entity instanceof PlayerEntity _player)
+                        _player.getInventory().markDirty();
                     NbtCompound _nbtTag = itemstack.getNbt();
                     if (_nbtTag != null)
                         entity.getOffHandStack().setNbt(_nbtTag.copy());
                     entity.getItemCooldownManager().set(entity.getOffHandStack().getItem(), 100);
+                    if (!world.isClient)
+                        world.createExplosion(null, x, y, z, 5, World.ExplosionSourceType.TNT);
                 });
             }
         }

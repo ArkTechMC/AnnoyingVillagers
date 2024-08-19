@@ -1,4 +1,4 @@
-package com.iafenvoy.annoyingvillagers.item;
+package com.iafenvoy.annoyingvillagers.item.tool;
 
 import com.iafenvoy.annoyingvillagers.registry.AnnoyingModItemGroups;
 import net.minecraft.item.FishingRodItem;

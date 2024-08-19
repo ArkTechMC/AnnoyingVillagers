@@ -1,6 +1,7 @@
 package com.iafenvoy.annoyingvillagers.forge;
 
 import com.iafenvoy.annoyingvillagers.AnnoyingVillagers;
+import com.iafenvoy.annoyingvillagers.AnnoyingVillagersClient;
 import dev.architectury.platform.Platform;
 import dev.architectury.platform.forge.EventBuses;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,7 +19,7 @@ public class AnnoyingVillagersForge {
         EventBuses.registerModEventBus(AnnoyingVillagers.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
         AnnoyingVillagers.init();
         if (Platform.getEnv() == Dist.CLIENT)
-            AnnoyingVillagers.initClient();
+            AnnoyingVillagersClient.init();
     }
 
     @SubscribeEvent
@@ -28,6 +29,6 @@ public class AnnoyingVillagersForge {
 
     @SubscribeEvent
     public static void onClientInit(FMLClientSetupEvent event) {
-        event.enqueueWork(AnnoyingVillagers::processClient);
+        event.enqueueWork(AnnoyingVillagersClient::process);
     }
 }
