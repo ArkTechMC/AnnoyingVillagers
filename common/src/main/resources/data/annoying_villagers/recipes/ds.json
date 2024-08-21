@@ -1,24 +1,14 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": [
-    "caa",
-    "cb ",
-    "b  "
-  ],
-  "key": {
-    "a": {
-      "item": "minecraft:diamond"
-    },
-    "b": {
-      "item": "minecraft:stick"
-    },
-    "c": {
-      "item": "annoying_villagers:diamond_fragments"
-    }
+  "type": "neptune:weapon_desk",
+  "material": {
+    "item": "minecraft:diamond",
+    "count": 3
+  },
+  "stick": {
+    "item": "minecraft:stick",
+    "count": 2
   },
   "result": {
-    "item": "annoying_villagers:diamond_sickle",
-    "count": 1
+    "item": "annoying_villagers:diamond_sickle"
   }
 }

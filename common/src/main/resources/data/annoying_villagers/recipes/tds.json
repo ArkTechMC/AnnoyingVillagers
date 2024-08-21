@@ -1,21 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": [
-    "  a",
-    " b ",
-    "b  "
-  ],
-  "key": {
-    "a": {
-      "item": "minecraft:diamond"
-    },
-    "b": {
-      "item": "minecraft:stick"
-    }
+  "type": "neptune:weapon_desk",
+  "material": {
+    "item": "minecraft:diamond"
+  },
+  "stick": {
+    "item": "minecraft:stick",
+    "count": 2
   },
   "result": {
-    "item": "annoying_villagers:twin_diamond_spear",
-    "count": 1
+    "item": "annoying_villagers:twin_diamond_spear"
   }
 }

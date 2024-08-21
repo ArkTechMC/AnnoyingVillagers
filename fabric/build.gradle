@@ -23,8 +23,8 @@ dependencies {
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
-
-    modImplementation "curse.maven:neptune-lib-1071077:5637807"
+    // Neptune cross-platform library
+    modImplementation "maven.modrinth:neptune:qm4g4QTG"
 }
 
 processResources {

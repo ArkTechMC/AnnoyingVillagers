@@ -1,13 +1,13 @@
 {
   "type": "neptune:weapon_desk",
   "material": {
-    "item": "minecraft:diamond",
-    "count": 3
+    "item": "annoying_villagers:enchanted_diamond",
+    "count": 6
   },
   "stick": {
     "item": "minecraft:stick"
   },
   "result": {
-    "item": "annoying_villagers:diamond_hook_sword"
+    "item": "annoying_villagers:legendary_sword"
   }
 }

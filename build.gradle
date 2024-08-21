@@ -50,6 +50,9 @@ allprojects {
                 }
             }
         }
+        maven {
+            url = "https://api.modrinth.com/maven"
+        }
     }
 
     tasks.withType(JavaCompile).configureEach {

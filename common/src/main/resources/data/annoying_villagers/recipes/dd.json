@@ -1,21 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": [
-    "  a",
-    " a ",
-    "b  "
-  ],
-  "key": {
-    "a": {
-      "item": "minecraft:diamond"
-    },
-    "b": {
-      "item": "annoying_villagers:short_stick"
-    }
+  "type": "neptune:weapon_desk",
+  "material": {
+    "item": "minecraft:diamond",
+    "count": 2
+  },
+  "stick": {
+    "item": "minecraft:stick"
   },
   "result": {
-    "item": "annoying_villagers:diamond_dagger",
-    "count": 1
+    "item": "annoying_villagers:diamond_dagger"
   }
 }

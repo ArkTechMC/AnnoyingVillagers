@@ -1,21 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": [
-    " aa",
-    "aa ",
-    "ba "
-  ],
-  "key": {
-    "a": {
-      "item": "minecraft:diamond"
-    },
-    "b": {
-      "item": "minecraft:stick"
-    }
+  "type": "neptune:weapon_desk",
+  "material": {
+    "item": "minecraft:diamond",
+    "count": 5
+  },
+  "stick": {
+    "item": "minecraft:stick"
   },
   "result": {
-    "item": "annoying_villagers:diamond_blaster_sword",
-    "count": 1
+    "item": "annoying_villagers:diamond_blaster_sword"
   }
 }

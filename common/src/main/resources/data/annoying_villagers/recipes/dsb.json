@@ -1,24 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "pattern": [
-    "  a",
-    "ca ",
-    "bc "
-  ],
-  "key": {
-    "a": {
-      "item": "minecraft:diamond"
-    },
-    "b": {
-      "item": "minecraft:stick"
-    },
-    "c": {
-      "item": "annoying_villagers:diamond_fragments"
-    }
+  "type": "neptune:weapon_desk",
+  "material": {
+    "item": "minecraft:diamond",
+    "count": 3
+  },
+  "stick": {
+    "item": "minecraft:stick"
   },
   "result": {
-    "item": "annoying_villagers:diamond_sharp_blade",
-    "count": 1
+    "item": "annoying_villagers:diamond_sharp_blade"
   }
 }
