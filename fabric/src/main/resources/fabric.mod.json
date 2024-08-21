@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "annoying_villagers",
   "version": "${version}",
-
   "name": "Annoying Villagers",
   "description": "",
   "authors": [
@@ -12,10 +11,8 @@
   "contact": {
     "sources": "https://github.com/ArkTechMC/AnnoyingVillagers"
   },
-
   "license": "All Rights Reserved",
   "icon": "logo.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -31,6 +28,7 @@
   "depends": {
     "fabricloader": ">=0.15.11",
     "minecraft": ">=1.20.1",
-    "architectury": "*"
+    "architectury": "*",
+    "neptune": ">=0.4"
   }
 }
